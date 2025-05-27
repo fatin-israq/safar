@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="src/css/output.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+
+<body class="bg-[#f9f4fc] font-sans">
+  <div class="flex flex-col lg:flex-row min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="bg-[#efefef] w-full lg:w-64 p-4 space-y-4">
+      <h2 class="text-2xl font-bold text-black bg-[#a5cd99] rounded px-3 py-2 text-center">Dashboard</h2>
+      <nav class="space-y-5 pt-4 text-black font-medium">
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/pngegg (6) 1.png" class="w-6 h-6" />
+          <span>Ride Management</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/mappht.png" class="w-6 h-8" />
+          <span>Live Tracking</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/pngegg (2) 1.png" class="w-6 h-6" />
+          <span>Payment & Transactions</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/pngegg (4) 1.png" class="w-6 h-6" />
+          <span>Customer Support</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/pngegg (7) 1.png" class="w-6 h-6" />
+          <span>Loyalty & Offers</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/pngegg (5) 1.png" class="w-6 h-6" />
+          <span>Scheduling</span>
+        </a>
+
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/pngegg (3) 1.png" class="w-6 h-6" />
+          <span>Safety & Reports</span>
+        </a>
+        <a href="#" class="flex items-center space-x-3">
+          <img src="img/dashboard-icons/Setitingsphoto.png" class="w-6 h-6" />
+          <span>Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4 space-y-4">
+      <!-- Stats Boxes with Icons -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Total Rides today</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold text-black">127</p>
+            <img src="img/dashboard-icons/pngegg (6) 1.png" alt="Total Rides Icon" class="w-10 h-10">
+          </div>
+        </div>
+
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Ongoing Rides</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold text-black">87</p>
+            <img src="img/dashboard-icons/mappht.png" alt="Ongoing Rides Icon" class="w-8 h-10">
+          </div>
+        </div>
+
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Payment Success Rate</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold text-black">92.5%</p>
+            <img src="img/dashboard-icons/pngegg (2) 1.png" alt="Payment Icon" class="w-11 h-11">
+          </div>
+        </div>
+
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Supporting Requests</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold text-black">18</p>
+            <img src="img/dashboard-icons/pngegg (4) 1.png" alt="Support Icon" class="w-10 h-10">
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Ride Mode Breakdown & Tracking -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4 flex flex-col items-center justify-center">
+          <h3 class="text-lg font-semibold text-black mb-4">Ride Mode Breakdown</h3>
+          <img src="img/dashboard-icons/Photo123.png" />
+          <div class="flex justify-center gap-4 mt-4 text-sm">
+            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-500 rounded-full inline-block"></span>
+              Car</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-400 rounded-full inline-block"></span>
+              Bike</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-400 rounded-full inline-block"></span>
+              CNG</span>
+          </div>
+        </div>
+
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4 flex flex-col items-center justify-center">
+          <h3 class="text-lg font-semibold text-black mb-4">Live Tracking</h3>
+          <img src="img/dashboard-icons/mapimg.png" alt="Live Tracking" class="w-50 h-50" />
+        </div>
+      </div>
+
+
+      <!-- Recent Bookings -->
+      <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+        <h3 class="text-lg font-semibold text-black mb-4">Recent Bookings</h3>
+        <div class="space-y-2 text-sm">
+          <div class="grid grid-cols-5 bg-[#a5cd99] text-center text-black font-semibold rounded p-2">
+            <div>Booking ID</div>
+            <div>Rider</div>
+            <div>Driver</div>
+            <div>Mode</div>
+            <div>Status</div>
+          </div>
+          <div class="grid grid-cols-5 bg-[#d6edc4] text-center text-black rounded p-2">
+            <div>R12</div>
+            <div>Jhon Carter</div>
+            <div>Adam Smith</div>
+            <div>Car</div>
+            <div>Complete</div>
+          </div>
+          <div class="grid grid-cols-5 bg-[#d6edc4] text-center text-black rounded p-2">
+            <div>R13</div>
+            <div>Emily Jhonson</div>
+            <div>David Lee</div>
+            <div>CNG</div>
+            <div class="text-green-600 font-bold">Ongoing</div>
+          </div>
+          <div class="grid grid-cols-5 bg-[#d6edc4] text-center text-black rounded p-2">
+            <div>R14</div>
+            <div>GPU Prianto</div>
+            <div>Sarah Wilson</div>
+            <div>Bike</div>
+            <div class="text-red-600 font-bold">Cancelled</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
