@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
+  <title>Customer Support</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -11,10 +12,11 @@
     }
   </style>
 </head>
-<body class="bg-white">
+
+<body class="bg-[#fcfdd9] text-[#012B09] min-h-screen flex flex-col">
 
   <!-- Navbar -->
-  <header class="">
+   <header class="">
     <div
       class="bg-amber-100 max-w-full md:max-w-7xl mx-auto flex justify-between items-center px-5 py-3 md:mt-2 shadow-md md:rounded-md">
       <div class="flex items-center space-x-2">
@@ -38,11 +40,11 @@
     </div>
   </header>
 
+  <!-- Main Content Area -->
+  <div class="flex flex-1 flex-col lg:flex-row">
 
-  <div class="flex flex-col lg:flex-row min-h-screen">
-    
     <!-- Sidebar -->
-<aside class="bg-[#efefef] w-full lg:w-64 p-4 space-y-4 min-h-screen">
+    <aside class="bg-[#efefef] w-full lg:w-64 p-4 space-y-4 min-h-screen">
       <h2 class="text-2xl font-bold text-black bg-[#a5cd99] rounded-lg px-3 py-2 text-center shadow-sm">
         Dashboard
       </h2>
@@ -63,7 +65,7 @@
           <span>Payment & Transactions</span>
         </a>
         <a href="customerSupport.html"
-          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          class="flex items-center space-x-3 bg-[#c7e3b6] px-4 py-2 rounded-xl shadow transition-all duration-200">
           <img src="../Images/pngegg (4) 1.png" class="w-6 h-6" />
           <span>Customer Support</span>
         </a>
@@ -91,97 +93,86 @@
       </nav>
     </aside>
 
-    
-    
     <!-- Main Content -->
-    <main class="flex-1 p-4 space-y-4">
-      <!-- Stats Boxes with Icons -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-  <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
-    <h3 class="text-md font-semibold text-[#1f3b08]">Total Rides today</h3>
-    <div class="flex items-center justify-between mt-2">
-      <p class="text-3xl font-bold text-black">127</p>
-      <img src="Images/pngegg (6) 1.png" alt="Total Rides Icon" class="w-10 h-10">
-    </div>
-  </div>
-
-  <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
-    <h3 class="text-md font-semibold text-[#1f3b08]">Ongoing Rides</h3>
-    <div class="flex items-center justify-between mt-2">
-      <p class="text-3xl font-bold text-black">87</p>
-      <img src="Images/mappht.png" alt="Ongoing Rides Icon" class="w-8 h-10">
-    </div>
-  </div>
-
-  <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
-    <h3 class="text-md font-semibold text-[#1f3b08]">Payment Success Rate</h3>
-    <div class="flex items-center justify-between mt-2">
-      <p class="text-3xl font-bold text-black">92.5%</p>
-      <img src="Images/pngegg (2) 1.png" alt="Payment Icon" class="w-11 h-11">
-    </div>
-  </div>
-
-  <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
-    <h3 class="text-md font-semibold text-[#1f3b08]">Supporting Requests</h3>
-    <div class="flex items-center justify-between mt-2">
-      <p class="text-3xl font-bold text-black">18</p>
-      <img src="Images/pngegg (4) 1.png" alt="Support Icon" class="w-10 h-10">
-    </div>
-  </div>
-</div>
-
-     
-
-<!-- Ride Mode Breakdown & Tracking -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4 flex flex-col items-center justify-center">
-          <h3 class="text-lg font-semibold text-black mb-4">Ride Mode Breakdown</h3>
-          <img src="Images/Photo123.png" />
-          <div class="flex justify-center gap-4 mt-4 text-sm">
-            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-500 rounded-full inline-block"></span> Car</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-400 rounded-full inline-block"></span> Bike</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-400 rounded-full inline-block"></span> CNG</span>
-          </div>
-        </div>
-
-        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4 flex flex-col items-center justify-center">
-    <h3 class="text-lg font-semibold text-black mb-4">Live Tracking</h3>
-    <img src="Images/mapimg.png" alt="Live Tracking" class="w-50 h-50" />
-  </div>
+    <main class="flex-1 max-w-6xl mx-auto p-6 mt-6 space-y-10">
+      <!-- Title -->
+      <div class="text-center">
+        <h2 class="text-3xl font-bold">Customer Support</h2>
+        <p class="text-sm text-[#1f3b08] mt-2">Need help? We’re here for you 24/7.</p>
       </div>
 
-      
-      <!-- Recent Bookings -->
-      <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
-        <h3 class="text-lg font-semibold text-black mb-4">Recent Bookings</h3>
-        <div class="space-y-2 text-sm">
-          <div class="grid grid-cols-5 bg-[#94BB86] text-center text-black font-semibold rounded p-2">
-            <div>Booking ID</div>
-            <div>Rider</div>
-            <div>Driver</div>
-            <div>Mode</div>
-            <div>Status</div>
+      <!-- Support Options -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Contact Form -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+          <h3 class="text-xl font-semibold mb-4">Send us a message</h3>
+          <form class="space-y-4">
+            <div>
+              <label class="block text-sm mb-1">Full Name</label>
+              <input type="text"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                placeholder="Your name">
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Email Address</label>
+              <input type="email"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                placeholder="you@example.com">
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Message</label>
+              <textarea class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                rows="4" placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit"
+              class="bg-[#012B09] text-white px-5 py-2 rounded-md hover:bg-[#203924] transition">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Live Chat & FAQ -->
+        <div class="space-y-6">
+          <!-- Live Chat -->
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-semibold mb-4">Live Chat</h3>
+            <div class="bg-[#f0f0f0] p-4 rounded-md text-sm">
+              <p class="text-gray-600">Hi there! Our support agents are currently online.</p>
+              <button class="mt-3 bg-[#a5cd99] text-[#012B09] px-4 py-2 rounded hover:bg-[#94BB86] transition">Start
+                Chat</button>
+            </div>
           </div>
-          <div class="grid grid-cols-5 bg-[#94BB86] text-center text-black rounded p-2">
-            <div>R12</div>
-            <div>Jhon Carter</div>
-            <div>Adam Smith</div>
-            <div>Car</div>
-            <div>Complete</div>
-          </div>
-          <div class="grid grid-cols-5 bg-[#94BB86] text-center text-black rounded p-2">
-            <div>R13</div>
-            <div>Emily Jhonson</div>
-            <div>David Lee</div>
-            <div>CNG</div>
-            <div class="text-green-600 font-bold">Ongoing</div>
-          </div>
-          <div class="grid grid-cols-5 bg-[#94BB86] text-center text-black rounded p-2">
-            <div>R14</div>
-            <div>GPU Prianto</div>
-            <div>Sarah Wilson</div>
-            <div>Bike</div>
-            <div class="text-red-600 font-bold">Cancelled</div>
+
+          <!-- FAQ Accordion -->
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions</h3>
+            <div class="space-y-3">
+              <div class="border rounded-md">
+                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
+                  How do I cancel a ride?
+                  <span class="text-xl">+</span>
+                </button>
+                <div class="px-4 pb-3 hidden">
+                  You can cancel a ride from your ride history. Just click on the ride and select “Cancel Ride”.
+                </div>
+              </div>
+              <div class="border rounded-md">
+                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
+                  Where can I find my ride receipts?
+                  <span class="text-xl">+</span>
+                </button>
+                <div class="px-4 pb-3 hidden">
+                  Receipts are available in your profile section under "Payment History".
+                </div>
+              </div>
+              <div class="border rounded-md">
+                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
+                  I had an issue with my driver. What can I do?
+                  <span class="text-xl">+</span>
+                </button>
+                <div class="px-4 pb-3 hidden">
+                  Please report any driver issues using the form or live chat. Our team will investigate.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -189,7 +180,7 @@
   </div>
 
   <!-- Footer -->
-<footer class="bg-gray-100 py-10 mb-0">
+  <footer class="bg-gray-100 py-10 mb-0">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
       <div class="flex flex-col gap-7">
         <img src="./img/Safar-logo.png" alt="" class="w-28">
@@ -223,13 +214,31 @@
             class="w-8 h-8 transition-transform hover:scale-110 duration-300" />
           <img src="/img/social-medias/ig-icon.png" alt="Instagram"
             class="w-8 h-8 transition-transform hover:scale-110 duration-300" />
-          <img src="/img/social-medias/x-icon.png" alt="X" class="w-8 h-8 transition-transform hover:scale-110 duration-300" />
+          <img src="/img/social-medias/x-icon.png" alt="X"
+            class="w-8 h-8 transition-transform hover:scale-110 duration-300" />
         </div>
       </div>
     </div>
     <div class="text-center text-xs text-gray-500 mt-8">© 2025 Safar. All rights reserved.</div>
   </footer>
 
+  <!-- FAQ Toggle Script -->
+  <script>
+    document.querySelectorAll(".toggle-faq").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector("span");
+        if (answer.classList.contains("hidden")) {
+          answer.classList.remove("hidden");
+          icon.textContent = "–";
+        } else {
+          answer.classList.add("hidden");
+          icon.textContent = "+";
+        }
+      });
+    });
+  </script>
 
 </body>
+
 </html>

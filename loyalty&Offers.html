@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment & Transactions</title>
+  <title>Loyalty & Offers</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -11,10 +11,10 @@
     }
   </style>
 </head>
-<body class="bg-white">
+<body class="bg-[#fcfdd9] text-[#012B09] min-h-screen flex flex-col">
 
   <!-- Navbar -->
-  <header class="">
+    <header class="">
     <div
       class="bg-amber-100 max-w-full md:max-w-7xl mx-auto flex justify-between items-center px-5 py-3 md:mt-2 shadow-md md:rounded-md">
       <div class="flex items-center space-x-2">
@@ -38,10 +38,11 @@
     </div>
   </header>
 
-
-  <div class="flex flex-col lg:flex-row min-h-screen">
+  <!-- Main Content -->
+  <div class="flex flex-1 flex-col lg:flex-row">
+    
     <!-- Sidebar -->
-<aside class="bg-[#efefef] w-full lg:w-64 p-4 space-y-4 min-h-screen">
+    <aside class="bg-[#efefef] w-full lg:w-64 p-4 space-y-4 min-h-screen">
       <h2 class="text-2xl font-bold text-black bg-[#a5cd99] rounded-lg px-3 py-2 text-center shadow-sm">
         Dashboard
       </h2>
@@ -57,7 +58,7 @@
           <span>Live Tracking</span>
         </a>
         <a href="payment&Trans.html"
-          class="flex items-center space-x-3 bg-[#c7e3b6] hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
           <img src="../Images/pngegg (2) 1.png" class="w-6 h-6" />
           <span>Payment & Transactions</span>
         </a>
@@ -68,7 +69,7 @@
         </a>
 
         <a href="loyalty&Offers.html"
-          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          class="flex items-center space-x-3 bg-[#c7e3b6] hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
           <img src="../Images/pngegg (7) 1.png" class="w-6 h-6" />
           <span>Loyalty & Offers</span>
         </a>
@@ -90,105 +91,91 @@
       </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 p-4 space-y-6">
-      <!-- Payment Summary -->
-      <div class="bg-[#fcfadf] p-4 shadow-md rounded-md">
-        <h3 class="text-xl font-bold mb-3">Payment Summary</h3>
-        <div class="space-y-2">
-          <div class="flex justify-between">
-            <span>Current Wallet Balance</span>
-            <span id="walletBalance" class="bg-pink-300 px-2 rounded-md">505.34</span>
+    <!-- Loyalty & Offers Section -->
+    <main class="flex-1 max-w-6xl mx-auto p-6 mt-6 space-y-10">
+      <section class="bg-white rounded-xl shadow-lg p-6 space-y-8">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-[#012B09]">Loyalty & Offers</h2>
+          <p class="text-sm text-[#1f3b08] mt-2 italic">Earn rewards and save more on every ride.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Loyalty Points Card -->
+          <div class="border rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-[#203924]">Your Loyalty Points</h3>
+              <p class="text-sm text-gray-600 mb-4">Keep riding to earn points and unlock exclusive rewards.</p>
+              <div class="bg-[#d1f2c3] rounded-full h-4 w-full overflow-hidden">
+                <div class="bg-[#a5cd99] h-4 rounded-full" style="width: 65%;"></div>
+              </div>
+              <p class="text-sm text-[#203924] mt-2 font-semibold">650 / 1000 points</p>
+            </div>
+            <button class="mt-6 bg-[#012B09] text-white py-2 rounded-md hover:bg-[#203924] transition">Redeem Points</button>
           </div>
-          <div class="flex justify-between">
-            <span>Total Spent This Month</span>
-            <span class="bg-pink-300 px-2 rounded-md">374.89</span>
+
+          <!-- Current Offers Card -->
+          <div class="border rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-[#203924]">Special Offers</h3>
+              <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
+                <li>🎉 Get 20% off on your next 5 rides</li>
+                <li>🚗 Free upgrade to premium rides on weekends</li>
+                <li>💸 Earn double points during holiday season</li>
+              </ul>
+            </div>
+            <button class="mt-6 bg-[#a5cd99] text-[#012B09] py-2 rounded-md hover:bg-[#94BB86] transition font-semibold">View All Offers</button>
           </div>
-          <div class="flex justify-between">
-            <span>Payment Success Rate</span>
-            <span>92.5%</span>
+
+          <!-- Referral Program Card -->
+          <div class="border rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-[#203924]">Refer & Earn</h3>
+              <p class="text-sm text-gray-600 mb-4">Invite friends and get ₹100 credit for each successful referral.</p>
+              <div class="bg-[#d1f2c3] rounded-full h-4 w-full overflow-hidden mb-2">
+                <div class="bg-[#a5cd99] h-4 rounded-full" style="width: 40%;"></div>
+              </div>
+              <p class="text-sm text-[#203924] font-semibold">4 / 10 friends referred</p>
+            </div>
+            <button class="mt-6 bg-[#012B09] text-white py-2 rounded-md hover:bg-[#203924] transition">Invite Friends</button>
           </div>
         </div>
-        <div class="flex gap-4 mt-4">
-          <button onclick="addMoney()" class="bg-sky-400 px-4 py-2 rounded-md">Add Money To Wallet</button>
-          <button class="bg-sky-400 px-4 py-2 rounded-md">View Statement</button>
-        </div>
-      </div>
+      </section>
+      
+      <!-- How It Works Section -->
+<div class="bg-white border-t pt-8 mt-10 text-center rounded-xl px-6 pb-16 shadow-lg relative">
+  <h3 class="text-2xl font-bold text-[#012B09]">How It Works</h3>
+  <p class="text-sm text-[#1f3b08] max-w-2xl mx-auto">Earning and using your loyalty points is easy. The more you ride, the more rewards you unlock. Here's a quick guide:</p>
 
-      <!-- Transaction History -->
-<div class="bg-[#fcfadf] p-4 shadow-md rounded-md">
-  <div class="flex justify-between items-center mb-3">
-    <h3 class="text-xl font-bold">Transaction History</h3>
-    <input type="text" placeholder="Search" onkeyup="searchTransactions(this.value)"
-      class="px-3 py-1 rounded-md border" />
-  </div>
+  <!-- Cards Section -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 relative -top-4">
+    
+    <div class="p-4 border rounded-xl shadow-sm bg-[#f8fff4] hover:shadow-md transition">
+      <img src="./Images/Ride.png" alt="Ride" class="w-12 h-12 mx-auto mb-3" />
+      <h4 class="font-semibold text-lg text-[#203924]">Ride & Earn</h4>
+      <p class="text-sm text-gray-600 mt-1">Each completed ride earns you points automatically.</p>
+    </div>
 
-  <!-- Transaction Table Header -->
-  <div class="grid grid-cols-4 font-semibold px-4 py-2 rounded-md" style="background-color:#94BB86;">
-    <div>Date</div>
-    <div>Transaction ID</div>
-    <div>Amount</div>
-    <div>Payment Method</div>
-  </div>
+    <div class="p-4 border rounded-xl shadow-sm bg-[#f8fff4] hover:shadow-md transition">
+      <img src="./Images/RedeemAwards.png" alt="Redeem" class="w-12 h-12 mx-auto mb-3" />
+      <h4 class="font-semibold text-lg text-[#203924]">Redeem Rewards</h4>
+      <p class="text-sm text-gray-600 mt-1">Use your points to get discounts, upgrades, or freebies.</p>
+    </div>
 
-  <!-- Transaction Items -->
-  <div id="transactions" class="space-y-2 mt-2">
-    <div class="grid grid-cols-4 px-4 py-2 rounded-md transaction" style="background-color:#94BB86;">
-      <div>23/04/2025</div>
-      <div>TXN#6789</div>
-      <div>203.89</div>
-      <div>Cash</div>
+    <div class="p-4 border rounded-xl shadow-sm bg-[#f8fff4] hover:shadow-md transition">
+      <img src="./Images/LevelUp.png" alt="Level Up" class="w-12 h-12 mx-auto mb-3" />
+      <h4 class="font-semibold text-lg text-[#203924]">Level Up</h4>
+      <p class="text-sm text-gray-600 mt-1">Unlock premium benefits as you earn more points over time.</p>
     </div>
-    <div class="grid grid-cols-4 px-4 py-2 rounded-md transaction" style="background-color:#94BB86;">
-      <div>18/04/2025</div>
-      <div>TXN#6788</div>
-      <div>86.00</div>
-      <div>Safar Wallet</div>
-    </div>
-    <div class="grid grid-cols-4 px-4 py-2 rounded-md transaction" style="background-color:#94BB86;">
-      <div>05/04/2025</div>
-      <div>TXN#6785</div>
-      <div>85.00</div>
-      <div>Bkash</div>
-    </div>
+    
   </div>
 </div>
 
-<!-- Payment Methods -->
-<div class="bg-[#fcfadf] p-4 shadow-md rounded-md mt-6">
-  <h3 class="text-xl font-bold mb-3">Payment Method</h3>
-  <div class="space-y-2" id="methodList">
-    <div class="flex items-center gap-3">
-      <input type="radio" name="payment-method" onclick="selectMethod('#11bck23')" />
-      <img src="Images/bkash.png" alt="Bkash" class="h-6" />
-      <span>#11bck23</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <input type="radio" name="payment-method" onclick="selectMethod('#jk998ksbd90')" />
-      <img src="Images/visa.png" alt="Visa" class="h-6" />
-      <span>#jk998ksbd90</span>
-    </div>
+    </main>
   </div>
-  <div class="flex justify-center mt-4">
-    <button onclick="addMethod()" class="bg-sky-400 px-4 py-2 rounded-md">Add Method</button>
-  </div>
-</div>
-
-
-      <!-- Discounts & Offers -->
-<div class="bg-[#fcfadf] p-4 shadow-md rounded-md">
-  <h3 class="text-xl font-bold mb-3">Discounts & Offers</h3>
-  <div class="p-4 rounded-md flex justify-between items-center" style="background-color:#94BB86;">
-    <div>
-      <p class="font-semibold text-lg">BKASH20</p>
-      <p class="text-sm">Use Bkash to get 20% discount on payment over BDT 199</p>
-    </div>
-    <button onclick="useDiscount()" class="bg-sky-400 px-4 py-2 rounded-md">Use</button>
-  </div>
-</div>
   
-<!-- Footer -->
-<footer class="bg-gray-100 py-10 mb-0">
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-10 mb-0">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
       <div class="flex flex-col gap-7">
         <img src="./img/Safar-logo.png" alt="" class="w-28">
@@ -228,52 +215,5 @@
     </div>
     <div class="text-center text-xs text-gray-500 mt-8">© 2025 Safar. All rights reserved.</div>
   </footer>
-
-
-  <!-- JavaScript -->
-  <script>
-    function addMoney() {
-      const current = parseFloat(document.getElementById("walletBalance").textContent);
-      const amount = parseFloat(prompt("Enter amount to add:"));
-      if (!isNaN(amount)) {
-        const updated = (current + amount).toFixed(2);
-        document.getElementById("walletBalance").textContent = updated;
-      } else {
-        alert("Please enter a valid number.");
-      }
-    }
-
-    function searchTransactions(query) {
-      const transactions = document.querySelectorAll(".transaction");
-      transactions.forEach(txn => {
-        const text = txn.textContent.toLowerCase();
-        txn.style.display = text.includes(query.toLowerCase()) ? "grid" : "none";
-      });
-    }
-
-    function addMethod() {
-      const method = prompt("Enter payment method name:");
-      const id = prompt("Enter method ID:");
-      if (method && id) {
-        const newDiv = document.createElement("div");
-        newDiv.className = "flex items-center gap-3";
-        newDiv.innerHTML = `
-          <input type="radio" name="payment-method" onclick="selectMethod('${id}')" />
-          <img src="Images/default-card.png" class="h-6" />
-          <span>${id}</span>
-        `;
-        document.getElementById("methodList").appendChild(newDiv);
-      }
-    }
-
-    function useDiscount() {
-      alert("Discount code BKASH20 applied successfully!");
-    }
-
-    function selectMethod(id) {
-      console.log("Selected method ID:", id);
-    }
-  </script>
 </body>
-
 </html>
