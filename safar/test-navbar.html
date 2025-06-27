@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Test | Safar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Test Navbar -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-5 py-3">
+            <div class="flex items-center space-x-2">
+                <img src="./img/Safar-logo.png" alt="Safar Logo" class="h-8" />
+                <span class="text-xl font-bold">Safar Test</span>
+            </div>
+
+            <div class="space-x-2 font-semibold" id="navbarUser">
+                <!-- Default: Login/Register buttons (shown when not logged in) -->
+                <div id="authButtons" class="space-x-2">
+                    <button class="bg-gray-200 px-4 py-2 text-sm rounded-md hover:bg-gray-300 transition">
+                        <a href="./src/login.html">LOG IN</a>
+                    </button>
+                    <button class="bg-green-600 text-white px-4 py-2 text-sm rounded-md hover:bg-green-700 transition">
+                        <a href="./src/signup.html">SIGN UP</a>
+                    </button>
+                </div>
+
+                <!-- Profile section (shown when logged in) -->
+                <div id="profileSection" class="space-x-2 hidden">
+                    <div class="flex items-center space-x-3">
+                        <span id="userWelcome" class="text-sm text-gray-700">Welcome, User!</span>
+                        <div class="relative">
+                            <button id="profileButton"
+                                class="bg-green-100 px-4 py-2 text-sm rounded-md hover:bg-green-200 transition flex items-center space-x-2">
+                                <span id="userName">Profile</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <!-- Dropdown menu -->
+                            <div id="profileDropdown"
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-[9999] hidden border border-gray-200">
+                                <a href="./dashboard.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                                <a href="./settings.html"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                                <hr class="my-1">
+                                <button id="logoutButton"
+                                    class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Test Controls -->
+    <div class="max-w-7xl mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-6">Navbar Authentication Test</h1>
+
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-lg font-semibold mb-4">Test Controls</h2>
+            <div class="space-x-4">
+                <button onclick="simulateLogin()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Simulate Login
+                </button>
+                <button onclick="simulateLogout()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                    Simulate Logout
+                </button>
+                <button onclick="checkStatus()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                    Check Status
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-lg font-semibold mb-4">Expected Behavior</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li><strong>When logged out:</strong> Shows "LOG IN" and "SIGN UP" buttons</li>
+                <li><strong>When logged in:</strong> Shows "Welcome, [Name]!" and profile dropdown with Dashboard and
+                    Logout options</li>
+                <li><strong>Profile dropdown:</strong> Clicking profile button shows/hides dropdown menu</li>
+                <li><strong>Logout:</strong> Clicking logout clears user data and returns to logged-out state</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="./src/js/navbar.js"></script>
+    <script>
+        function simulateLogin() {
+            const testUser = {
+                name: "Test User",
+                email: "test@example.com",
+                id: 1
+            };
+            localStorage.setItem("safarUser", JSON.stringify(testUser));
+            initializeNavbar(); // Re-initialize navbar
+            alert("Simulated login successful! Check the navbar.");
+        }
+
+        function simulateLogout() {
+            localStorage.removeItem("safarUser");
+            initializeNavbar(); // Re-initialize navbar
+            alert("Simulated logout successful! Check the navbar.");
+        }
+
+        function checkStatus() {
+            const user = localStorage.getItem("safarUser");
+            if (user) {
+                const userData = JSON.parse(user);
+                alert(`Logged in as: ${userData.name || "Unknown User"}`);
+            } else {
+                alert("Not logged in");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

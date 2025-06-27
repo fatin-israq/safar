@@ -19,22 +19,54 @@
   <!-- Navbar -->
   <header class="bg-amber-100 shadow-md">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-5 py-3">
-      <a href="#" class="flex items-center gap-3">
-        <a href="index.html"><img src="./img/Safar-logo.png" alt="Safar Logo" class="h-8" /></a>
-        <span class="text-xl font-bold text-[#012B09]">Safar</span>
-      </a>
-      <nav class="space-x-6 hidden md:flex font-medium">
-        <a href="#" class="text-sm hover:font-semibold hover:scale-105 transition">Subscription</a>
-        <a href="#" class="text-sm hover:font-semibold hover:scale-105 transition">Services</a>
-        <a href="#" class="text-sm hover:font-semibold hover:scale-105 transition">Support</a>
-        <a href="./dashboard.html" class="text-sm hover:font-semibold hover:scale-105 transition">Dashboard</a>
+      <a href="index.html"><img src="./img/Safar-logo.png" alt="Safar Logo" class="h-8" /></a>
+      <nav class="space-x-6 hidden md:flex justify-between font-medium">
+        <a href="subscription.html"
+          class="text-sm hover:font-semibold transition-transform hover:scale-105">Subscription</a>
+        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Services</a>
+        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Support</a>
+        <a href="./dashboard.html"
+          class="text-sm hover:font-semibold transition-transform hover:scale-105">Dashboard</a>
       </nav>
-      <div class="space-x-2 font-semibold">
-        <a href="./src/login.html"
-          class="bg-gray-200 px-4 py-2 text-sm rounded-md hover:bg-gray-300 hover:scale-105 transition">LOG IN</a>
-        <a href="./src/signup.html"
-          class="bg-[#012B09] text-white px-4 py-2 text-sm rounded-md hover:bg-[#203924] hover:scale-105 transition">SIGN
-          UP</a>
+      <div class="space-x-2 font-semibold" id="navbarUser">
+        <!-- Default: Login/Register buttons (shown when not logged in) -->
+        <div id="authButtons" class="space-x-2">
+          <button
+            class="bg-gray-200 px-4 py-2 text-sm rounded-md hover:bg-gray-300 hover:cursor-pointer transition-transform transform hover:scale-105 duration-300">
+            <a href="./src/login.html">LOG IN</a>
+          </button>
+          <button
+            class="bg-[#012B09] text-white px-4 py-2 text-sm rounded-md hover:bg-[#203924] hover:cursor-pointer transition-transform transform hover:scale-105 duration-300">
+            <a href="./src/signup.html">SIGN UP</a>
+          </button>
+        </div>
+
+        <!-- Profile section (shown when logged in) -->
+        <div id="profileSection" class="space-x-2 hidden">
+          <div class="flex items-center space-x-3">
+            <span id="userWelcome" class="text-sm text-gray-700">Welcome, User!</span>
+            <div class="relative">
+              <button id="profileButton"
+                class="bg-green-100 px-4 py-2 text-sm rounded-md hover:bg-green-200 hover:cursor-pointer transition-transform transform hover:scale-105 duration-300 flex items-center space-x-2">
+                <span id="userName">Profile</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <!-- Dropdown menu -->
+              <div id="profileDropdown"
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-[9999] hidden border border-gray-200">
+                <a href="./dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                <a href="./settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                <hr class="my-1">
+                <button id="logoutButton"
+                  class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -188,6 +220,7 @@
     <div class="text-center text-xs text-gray-500 mt-8">© 2025 Safar. All rights reserved.</div>
   </footer>
 
+  <script src="./src/js/navbar.js"></script>
 </body>
 
 </html>
