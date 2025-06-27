@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    #liveMap {
+      width: 100%;
+      height: 350px;
+      min-height: 300px;
+      border-radius: 0.5rem;
+      display: none;
+    }
+
+    .leaflet-control-geocoder {
+      min-width: 200px;
+    }
+
+    .recenter-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1001;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    #mapPlaceholder {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <!-- Navbar -->
+  <header class="">
+    <div
+      class="bg-amber-100 max-w-full md:max-w-7xl mx-auto flex justify-between items-center px-5 py-3 md:mt-2 shadow-md md:rounded-md">
+      <a href="index.html" class="flex flex-row gap-3">
+        <a href="index.html"><img src="./img/Safar-logo.png" alt="Safar Logo" class="h-8" /></a>
+      </a>
+      <nav class="space-x-6 hidden md:flex font-medium">
+        <a href="#" class="text-sm hover:font-semibold hover:scale-105 transition-transform">Subscription</a>
+        <a href="#" class="text-sm hover:font-semibold hover:scale-105 transition-transform">Services</a>
+        <a href="#" class="text-sm hover:font-semibold hover:scale-105 transition-transform">Support</a>
+        <a href="./dashboard.html"
+          class="text-sm hover:font-semibold hover:scale-105 transition-transform">Dashboard</a>
+      </nav>
+      <div class="space-x-2 font-semibold" id="navbarUser">
+        <!-- Default: Login/Register buttons (shown when not logged in) -->
+        <div id="authButtons" class="space-x-2">
+          <a href="./src/login.html"
+            class="bg-gray-200 px-4 py-2 text-sm rounded-md hover:bg-gray-300 hover:scale-105 transition-transform">LOG
+            IN</a>
+          <a href="./src/signup.html"
+            class="bg-[#012B09] text-white px-4 py-2 text-sm rounded-md hover:bg-[#203924] hover:scale-105 transition-transform">SIGN
+            UP</a>
+        </div>
+
+        <!-- Profile section (shown when logged in) -->
+        <div id="profileSection" class="space-x-2 hidden">
+          <div class="flex items-center space-x-3">
+            <span id="userWelcome" class="text-sm text-gray-700">Welcome, User!</span>
+            <div class="relative">
+              <button id="profileButton"
+                class="bg-green-100 px-4 py-2 text-sm rounded-md hover:bg-green-200 hover:cursor-pointer transition-transform transform hover:scale-105 duration-300 flex items-center space-x-2">
+                <span id="userName">Profile</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <!-- Dropdown menu -->
+              <div id="profileDropdown"
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
+                <a href="./dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                <a href="./settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                <hr class="my-1">
+                <button id="logoutButton"
+                  class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-col lg:flex-row min-h-screen">
+    <!-- Sidebar -->
+    <aside class="bg-[#efefef] w-full lg:w-64 p-4 space-y-4 min-h-screen">
+      <h2 class="text-2xl font-bold bg-[#a5cd99] rounded-lg px-3 py-2 text-center shadow-sm">Dashboard</h2>
+      <nav class="space-y-3 pt-4 font-medium text-black">
+        <a href="rideManagement.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow">
+          <img src="./Images/pngegg (6) 1.png" class="w-6 h-6" alt="Ride Management Icon" />
+          <span>Ride Management</span>
+        </a>
+        <a href="payment&Trans.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow">
+          <img src="./Images/pngegg (2) 1.png" class="w-6 h-6" alt="Payment Icon" />
+          <span>Payment & Transactions</span>
+        </a>
+        <a href="customerSupport.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow">
+          <img src="./Images/pngegg (4) 1.png" class="w-6 h-6" alt="Support Icon" />
+          <span>Customer Support</span>
+        </a>
+        <a href="loyalty&Offers.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow">
+          <img src="./Images/pngegg (7) 1.png" class="w-6 h-6" alt="Loyalty Icon" />
+          <span>Loyalty & Offers</span>
+        </a>
+        <a href="Scheduling.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow">
+          <img src="./Images/pngegg (5) 1.png" class="w-6 h-6" alt="Scheduling Icon" />
+          <span>Scheduling</span>
+        </a>
+        <a href="Safety&Reports.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow">
+          <img src="./Images/pngegg (3) 1.png" class="w-6 h-6" alt="Reports Icon" />
+          <span>Safety & Reports</span>
+        </a>
+        <a href="settings.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow">
+          <img src="./Images/Setitingsphoto.png" class="w-6 h-6" alt="Settings Icon" />
+          <span>Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4 space-y-4">
+      <!-- Stats Boxes -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Total Rides today</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold">127</p>
+            <img src="./Images/pngegg (6) 1.png" alt="Total Rides" class="w-10 h-10" />
+          </div>
+        </div>
+
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Ongoing Rides</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold">87</p>
+            <img src="./Images/mappht.png" alt="Ongoing Rides" class="w-8 h-10" />
+          </div>
+        </div>
+
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Payment Success Rate</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold">92.5%</p>
+            <img src="./Images/pngegg (2) 1.png" alt="Payment Success" class="w-11 h-11" />
+          </div>
+        </div>
+
+        <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+          <h3 class="text-md font-semibold text-[#1f3b08]">Supporting Requests</h3>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-3xl font-bold">18</p>
+            <img src="./Images/pngegg (4) 1.png" alt="Support Requests" class="w-10 h-10" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Map & Ride Breakdown -->
+      <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4 relative text-center">
+        <h3 class="text-lg font-semibold text-black mb-4">Live Tracking</h3>
+        <div id="liveMap"></div>
+        <button id="recenterBtn" class="recenter-btn">Recenter</button>
+        <img id="mapPlaceholder" src="./Images/mapimg.png" alt="Live Tracking Placeholder" class="w-50 h-50"
+          onclick="showLiveMap()" />
+        <h3 class="text-lg font-semibold text-black my-4">Ride Mode Breakdown</h3>
+        <img src="./Images/Photo123.png" alt="Ride Mode Chart" />
+        <div class="flex justify-center gap-4 mt-4 text-sm">
+          <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-500 rounded-full"></span>Car</span>
+          <span class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-400 rounded-full"></span>Bike</span>
+          <span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-400 rounded-full"></span>CNG</span>
+        </div>
+      </div>
+
+      <!-- Recent Bookings -->
+      <div class="bg-[#fcfdd9] rounded-lg shadow-md p-4">
+        <h3 class="text-lg font-semibold text-black mb-4">Recent Bookings</h3>
+        <div class="space-y-2 text-sm">
+          <div class="grid grid-cols-5 bg-[#94BB86] text-center font-semibold rounded p-2">
+            <div>Booking ID</div>
+            <div>Rider</div>
+            <div>Driver</div>
+            <div>Mode</div>
+            <div>Status</div>
+          </div>
+          <div class="grid grid-cols-5 bg-[#94BB86] text-center rounded p-2">
+            <div>R12</div>
+            <div>Jhon Carter</div>
+            <div>Adam Smith</div>
+            <div>Car</div>
+            <div>Complete</div>
+          </div>
+          <div class="grid grid-cols-5 bg-[#94BB86] text-center rounded p-2">
+            <div>R13</div>
+            <div>Emily Jhonson</div>
+            <div>David Lee</div>
+            <div>CNG</div>
+            <div class="text-green-600 font-bold">Ongoing</div>
+          </div>
+          <div class="grid grid-cols-5 bg-[#94BB86] text-center rounded p-2">
+            <div>R14</div>
+            <div>GPU Prianto</div>
+            <div>Sarah Wilson</div>
+            <div>Bike</div>
+            <div class="text-red-600 font-bold">Cancelled</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
+      <div class="flex flex-col gap-7">
+        <a href="index.html"><img src="./img/Safar-logo.png" alt="Safar Logo" class="w-28" /></a>
+        <div class="flex space-x-3 mt-4">
+          <img src="./img/appstores/Playstore.png" class="w-32 hover:scale-110 transition-transform"
+            alt="Google Play" />
+          <img src="./img/appstores/App Store.png" class="w-32 hover:scale-110 transition-transform" alt="App Store" />
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Navigate</h4>
+        <ul class="space-y-1">
+          <li>Home</li>
+          <li>Subscription</li>
+          <li>Services</li>
+          <li>Support</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Legal</h4>
+        <ul class="space-y-1">
+          <li>Terms & Conditions</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Socials</h4>
+        <div class="flex space-x-3">
+          <img src="./img/social-medias/facebook-icon.png" alt="Facebook" class="w-8 h-8 hover:scale-110" />
+          <img src="./img/social-medias/ig-icon.png" alt="Instagram" class="w-8 h-8 hover:scale-110" />
+          <img src="./img/social-medias/x-icon.png" alt="X" class="w-8 h-8 hover:scale-110" />
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-8">© 2025 Safar. All rights reserved.</div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src="./src/js/navbar.js"></script>
+  <script>
+    let map, userMarker, defaultCenter = [23.8103, 90.4125], defaultZoom = 12;
+    document.getElementById("mapPlaceholder").addEventListener("click", function (e) {
+      e.preventDefault();
+      document.getElementById("liveMap").style.display = "block";
+      document.getElementById("mapPlaceholder").style.display = "none";
+      document.getElementById("recenterBtn").style.display = "block";
+      if (!map) {
+        map = L.map("liveMap").setView(defaultCenter, defaultZoom);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: "© OpenStreetMap",
+        }).addTo(map);
+        L.Control.geocoder({ defaultMarkGeocode: false })
+          .on("markgeocode", function (e) {
+            map.setView(e.geocode.center, 16);
+            if (userMarker) userMarker.setLatLng(e.geocode.center);
+            else userMarker = L.marker(e.geocode.center).addTo(map);
+          })
+          .addTo(map);
+        map.locate({ setView: true, maxZoom: 16 });
+        map.on("locationfound", function (e) {
+          if (userMarker) userMarker.setLatLng(e.latlng);
+          else userMarker = L.marker(e.latlng).addTo(map);
+          defaultCenter = [e.latitude, e.longitude];
+        });
+      }
+    });
+    document.getElementById("recenterBtn").addEventListener("click", function () {
+      if (map) map.setView(defaultCenter, defaultZoom);
+    });
+  </script>
+</body>
+
+</html>

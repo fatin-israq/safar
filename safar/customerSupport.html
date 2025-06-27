@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Support</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-[#fcfdd9] text-[#012B09] min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <header class="">
+    <div
+      class="bg-amber-100 max-w-full md:max-w-7xl mx-auto flex justify-between items-center px-5 py-3 md:mt-2 shadow-md md:rounded-md">
+      <div class="flex items-center space-x-2">
+        <a href="#" class="flex flex-row gap-3">
+          <a href="index.html"><img src="./img/Safar-logo.png" alt="Safar Logo" class="h-8" /></a>
+        </a>
+      </div>
+      <nav class="space-x-6 hidden md:flex justify-between font-medium">
+        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Subscription</a>
+        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Services</a>
+        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Support</a>
+        <a href="./dashboard.html"
+          class="text-sm hover:font-semibold transition-transform hover:scale-105">Dashboard</a>
+      </nav>
+      <div class="space-x-2 font-semibold">
+        <button
+          class="bg-gray-200 px-4 py-2 text-sm rounded-md hover:bg-gray-300 hover:cursor-pointer transition-transform transform hover:scale-105 duration-300"><a
+            href="./src/login.html">LOG IN</a></button>
+        <button
+          class="bg-[#012B09] text-white px-4 py-2 text-sm rounded-md hover:bg-[#203924] hover:cursor-pointer transition-transform transform hover:scale-105 duration-300"><a
+            href="./src/signup.html">SIGN UP</a></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <div class="flex flex-1 flex-col lg:flex-row">
+
+    <!-- Sidebar -->
+    <aside class="bg-[#efefef] w-full lg:w-64 p-4 space-y-4 min-h-screen">
+      <h2 class="text-2xl font-bold text-black bg-[#a5cd99] rounded-lg px-3 py-2 text-center shadow-sm">
+        Dashboard
+      </h2>
+      <nav class="space-y-3 pt-4 text-black font-medium">
+        <a href="rideManagement.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          <img src="./Images/pngegg (6) 1.png" class="w-6 h-6" />
+          <span>Ride Management</span>
+        </a>
+
+        <a href="payment&Trans.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          <img src="./Images/pngegg (2) 1.png" class="w-6 h-6" />
+          <span>Payment & Transactions</span>
+        </a>
+        <a href="customerSupport.html"
+          class="flex items-center space-x-3 bg-[#c7e3b6] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          <img src="./Images/pngegg (4) 1.png" class="w-6 h-6" />
+          <span>Customer Support</span>
+        </a>
+
+        <a href="loyalty&Offers.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          <img src="./Images/pngegg (7) 1.png" class="w-6 h-6" />
+          <span>Loyalty & Offers</span>
+        </a>
+        <a href="Scheduling.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          <img src="./Images/pngegg (5) 1.png" class="w-6 h-6" />
+          <span>Scheduling</span>
+        </a>
+        <a href="Safety&Reports.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          <img src="./Images/pngegg (3) 1.png" class="w-6 h-6" />
+          <span>Safety & Reports</span>
+        </a>
+        <a href="settings.html"
+          class="flex items-center space-x-3 bg-white hover:bg-[#d1f2c3] px-4 py-2 rounded-xl shadow transition-all duration-200">
+          <img src="./Images/Setitingsphoto.png" class="w-6 h-6" />
+          <span>Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-6xl mx-auto p-6 mt-6 space-y-10">
+      <!-- Title -->
+      <div class="text-center">
+        <h2 class="text-3xl font-bold">Customer Support</h2>
+        <p class="text-sm text-[#1f3b08] mt-2">Need help? We’re here for you 24/7.</p>
+      </div>
+
+      <!-- Support Options -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Contact Form -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+          <h3 class="text-xl font-semibold mb-4">Send us a message</h3>
+          <form class="space-y-4">
+            <div>
+              <label class="block text-sm mb-1">Full Name</label>
+              <input type="text"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                placeholder="Your name">
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Email Address</label>
+              <input type="email"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                placeholder="you@example.com">
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Message</label>
+              <textarea class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                rows="4" placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit"
+              class="bg-[#012B09] text-white px-5 py-2 rounded-md hover:bg-[#203924] transition">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Live Chat & FAQ -->
+        <div class="space-y-6">
+          <!-- Live Chat -->
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-semibold mb-4">Live Chat</h3>
+            <div class="bg-[#f0f0f0] p-4 rounded-md text-sm">
+              <p class="text-gray-600">Hi there! Our support agents are currently online.</p>
+              <button class="mt-3 bg-[#a5cd99] text-[#012B09] px-4 py-2 rounded hover:bg-[#94BB86] transition">Start
+                Chat</button>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions</h3>
+            <div class="space-y-3">
+              <div class="border rounded-md">
+                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
+                  How do I cancel a ride?
+                  <span class="text-xl">+</span>
+                </button>
+                <div class="px-4 pb-3 hidden">
+                  You can cancel a ride from your ride history. Just click on the ride and select “Cancel Ride”.
+                </div>
+              </div>
+              <div class="border rounded-md">
+                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
+                  Where can I find my ride receipts?
+                  <span class="text-xl">+</span>
+                </button>
+                <div class="px-4 pb-3 hidden">
+                  Receipts are available in your profile section under "Payment History".
+                </div>
+              </div>
+              <div class="border rounded-md">
+                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
+                  I had an issue with my driver. What can I do?
+                  <span class="text-xl">+</span>
+                </button>
+                <div class="px-4 pb-3 hidden">
+                  Please report any driver issues using the form or live chat. Our team will investigate.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-10 mb-0">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
+      <div class="flex flex-col gap-7">
+        <a href="index.html"><img src="./img/Safar-logo.png" alt="" class="w-28"></a>
+        <div class="flex space-x-3 mt-4">
+          <img src="./img/appstores/Playstore.png" class="w-32 transition-transform hover:scale-110 duration-300"
+            alt="Google Play" />
+          <img src="./img/appstores/App Store.png" class="w-32 transition-transform hover:scale-110 duration-300"
+            alt="App Store" />
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Navigate</h4>
+        <ul class="space-y-1 text-sm">
+          <li>Home</li>
+          <li>Subscription</li>
+          <li>Services</li>
+          <li>Support</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Legal</h4>
+        <ul class="space-y-1 text-sm">
+          <li>Terms & Conditions</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-2">Socials</h4>
+        <div class="flex space-x-3 text-sm">
+          <img src="./img/social-medias/facebook-icon.png" alt="Facebook"
+            class="w-8 h-8 transition-transform hover:scale-110 duration-300" />
+          <img src="./img/social-medias/ig-icon.png" alt="Instagram"
+            class="w-8 h-8 transition-transform hover:scale-110 duration-300" />
+          <img src="./img/social-medias/x-icon.png" alt="X"
+            class="w-8 h-8 transition-transform hover:scale-110 duration-300" />
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-8">© 2025 Safar. All rights reserved.</div>
+  </footer>
+
+  <!-- FAQ Toggle Script -->
+  <script>
+    document.querySelectorAll(".toggle-faq").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector("span");
+        if (answer.classList.contains("hidden")) {
+          answer.classList.remove("hidden");
+          icon.textContent = "–";
+        } else {
+          answer.classList.add("hidden");
+          icon.textContent = "+";
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
