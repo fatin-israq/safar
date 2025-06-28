@@ -93,10 +93,20 @@
           </button>
         </div>
         <div class="flex space-x-2 mb-4 w-[400px]">
-          <input type="text" id="pickupInput" placeholder="Or enter pickup location"
-            class="px-4 py-2 border rounded w-1/2 text-sm" />
-          <input type="text" id="destinationInput" placeholder="Enter destination"
-            class="px-4 py-2 border rounded w-1/2 text-sm" />
+          <div class="relative w-1/2">
+            <input type="text" id="pickupInput" placeholder="Or enter pickup location"
+              class="px-4 py-2 border rounded w-full text-sm" autocomplete="off" />
+            <div id="pickupDropdown"
+              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-b-md shadow-lg z-[9999] hidden max-h-48 overflow-y-auto">
+            </div>
+          </div>
+          <div class="relative w-1/2">
+            <input type="text" id="destinationInput" placeholder="Enter destination"
+              class="px-4 py-2 border rounded w-full text-sm" autocomplete="off" />
+            <div id="destinationDropdown"
+              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-b-md shadow-lg z-[9999] hidden max-h-48 overflow-y-auto">
+            </div>
+          </div>
         </div>
         <div class="flex space-x-2 mb-8 w-[400px]">
           <button id="searchBtn"
@@ -280,20 +290,6 @@
       let selectedDestination = null;
       let isGettingLocation = false;
 
-      // Update pickup text when user types in pickup input
-      pickupInput.addEventListener('input', function () {
-        const pickupValue = this.value.trim();
-        if (pickupValue) {
-          locationText.textContent = pickupValue.length > 20
-            ? pickupValue.substring(0, 20) + '...'
-            : pickupValue;
-          currentLocation = { name: pickupValue, isManual: true };
-        } else if (!currentLocation || currentLocation.isManual) {
-          locationText.textContent = 'My Location';
-          currentLocation = null;
-        }
-      });
-
       // Update destination text when user types
       destinationInput.addEventListener('input', function () {
         selectedDestination = this.value.trim();
@@ -303,6 +299,183 @@
             : selectedDestination;
         } else {
           destinationText.textContent = 'Select Destination';
+        }
+      });
+
+      // Autocomplete functionality
+      let pickupTimeout = null;
+      let destinationTimeout = null;
+      const pickupDropdown = document.getElementById('pickupDropdown');
+      const destinationDropdown = document.getElementById('destinationDropdown');
+
+      // Function to perform location search
+      async function searchLocations(query) {
+        if (query.length < 3) return [];
+
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&addressdetails=1&countrycodes=bd`
+          );
+          const data = await response.json();
+          return data.map(item => ({
+            display_name: item.display_name,
+            lat: parseFloat(item.lat),
+            lon: parseFloat(item.lon),
+            address: item.address
+          }));
+        } catch (error) {
+          console.error('Error fetching locations:', error);
+          return [];
+        }
+      }
+
+      // Function to create dropdown items
+      function createDropdownItem(location, isPickup = false) {
+        const item = document.createElement('div');
+        item.className = 'px-4 py-2 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0';
+
+        // Create a shorter display name
+        let shortName = location.display_name;
+        if (location.address) {
+          const addr = location.address;
+          shortName = `${addr.road || addr.neighbourhood || addr.suburb || ''}`;
+          if (addr.city || addr.town) {
+            shortName += `, ${addr.city || addr.town}`;
+          }
+          if (!shortName.trim()) {
+            shortName = location.display_name;
+          }
+        }
+
+        if (shortName.length > 50) {
+          shortName = shortName.substring(0, 50) + '...';
+        }
+
+        item.innerHTML = `
+          <div class="text-sm font-medium text-gray-900">${shortName}</div>
+          <div class="text-xs text-gray-500">${location.display_name.length > 60 ? location.display_name.substring(0, 60) + '...' : location.display_name}</div>
+        `;
+
+        item.addEventListener('click', () => {
+          if (isPickup) {
+            pickupInput.value = shortName;
+            currentLocation = {
+              name: shortName,
+              lat: location.lat,
+              lng: location.lon,
+              isManual: true
+            };
+            locationText.textContent = shortName.length > 20 ? shortName.substring(0, 20) + '...' : shortName;
+            pickupDropdown.classList.add('hidden');
+          } else {
+            destinationInput.value = shortName;
+            selectedDestination = shortName;
+            destinationText.textContent = shortName.length > 20 ? shortName.substring(0, 20) + '...' : shortName;
+            destinationDropdown.classList.add('hidden');
+          }
+        });
+
+        return item;
+      }
+
+      // Pickup input autocomplete
+      pickupInput.addEventListener('input', function () {
+        const query = this.value.trim();
+
+        // Update display
+        if (query) {
+          locationText.textContent = query.length > 20 ? query.substring(0, 20) + '...' : query;
+          currentLocation = { name: query, isManual: true };
+        } else if (!currentLocation || currentLocation.isManual) {
+          locationText.textContent = 'My Location';
+          currentLocation = null;
+          pickupDropdown.classList.add('hidden');
+          return;
+        }
+
+        // Clear previous timeout
+        if (pickupTimeout) {
+          clearTimeout(pickupTimeout);
+        }
+
+        // Hide dropdown if query is too short
+        if (query.length < 3) {
+          pickupDropdown.classList.add('hidden');
+          return;
+        }
+
+        // Debounce the search
+        pickupTimeout = setTimeout(async () => {
+          const locations = await searchLocations(query);
+          pickupDropdown.innerHTML = '';
+
+          if (locations.length > 0) {
+            locations.forEach(location => {
+              pickupDropdown.appendChild(createDropdownItem(location, true));
+            });
+            pickupDropdown.classList.remove('hidden');
+          } else {
+            pickupDropdown.classList.add('hidden');
+          }
+        }, 300);
+      });
+
+      // Destination input autocomplete
+      destinationInput.addEventListener('input', function () {
+        const query = this.value.trim();
+        selectedDestination = query;
+
+        // Update display
+        if (query) {
+          destinationText.textContent = query.length > 20 ? query.substring(0, 20) + '...' : query;
+        } else {
+          destinationText.textContent = 'Select Destination';
+          destinationDropdown.classList.add('hidden');
+          return;
+        }
+
+        // Clear previous timeout
+        if (destinationTimeout) {
+          clearTimeout(destinationTimeout);
+        }
+
+        // Hide dropdown if query is too short
+        if (query.length < 3) {
+          destinationDropdown.classList.add('hidden');
+          return;
+        }
+
+        // Debounce the search
+        destinationTimeout = setTimeout(async () => {
+          const locations = await searchLocations(query);
+          destinationDropdown.innerHTML = '';
+
+          if (locations.length > 0) {
+            locations.forEach(location => {
+              destinationDropdown.appendChild(createDropdownItem(location, false));
+            });
+            destinationDropdown.classList.remove('hidden');
+          } else {
+            destinationDropdown.classList.add('hidden');
+          }
+        }, 300);
+      });
+
+      // Hide dropdowns when clicking outside
+      document.addEventListener('click', function (e) {
+        if (!pickupInput.contains(e.target) && !pickupDropdown.contains(e.target)) {
+          pickupDropdown.classList.add('hidden');
+        }
+        if (!destinationInput.contains(e.target) && !destinationDropdown.contains(e.target)) {
+          destinationDropdown.classList.add('hidden');
+        }
+      });
+
+      // Hide dropdowns on escape key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          pickupDropdown.classList.add('hidden');
+          destinationDropdown.classList.add('hidden');
         }
       });
 
@@ -416,7 +589,7 @@
           pickup: currentLocation,
           destination: {
             name: selectedDestination,
-            coordinates: null // Will be geocoded in RideRoute.html
+            coordinates: null // Will be geocoded in RideRoute.html if not already available
           },
           timestamp: Date.now()
         };
