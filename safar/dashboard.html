@@ -60,7 +60,8 @@
         <a href="subscription.html"
           class="text-sm hover:font-semibold transition-transform hover:scale-105">Subscription</a>
         <a href="services.html" class="text-sm hover:font-semibold transition-transform hover:scale-105">Services</a>
-        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Support</a>
+        <a href="customerSupport.html"
+          class="text-sm hover:font-semibold transition-transform hover:scale-105">Support</a>
         <a href="./dashboard.html"
           class="text-sm hover:font-semibold transition-transform hover:scale-105">Dashboard</a>
       </nav>
@@ -194,28 +195,28 @@
         <button id="recenterBtn" class="recenter-btn">Recenter</button>
         <script>
           // Auto-show live map on page load
-          document.addEventListener('DOMContentLoaded', function() {
+          document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("liveMap").style.display = "block";
             document.getElementById("recenterBtn").style.display = "block";
-            
+
             if (!map) {
               map = L.map("liveMap").setView(defaultCenter, defaultZoom);
               L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: "© OpenStreetMap",
+                maxZoom: 19,
+                attribution: "© OpenStreetMap",
               }).addTo(map);
               L.Control.geocoder({ defaultMarkGeocode: false })
-          .on("markgeocode", function (e) {
-            map.setView(e.geocode.center, 16);
-            if (userMarker) userMarker.setLatLng(e.geocode.center);
-            else userMarker = L.marker(e.geocode.center).addTo(map);
-          })
-          .addTo(map);
+                .on("markgeocode", function (e) {
+                  map.setView(e.geocode.center, 16);
+                  if (userMarker) userMarker.setLatLng(e.geocode.center);
+                  else userMarker = L.marker(e.geocode.center).addTo(map);
+                })
+                .addTo(map);
               map.locate({ setView: true, maxZoom: 16 });
               map.on("locationfound", function (e) {
-          if (userMarker) userMarker.setLatLng(e.latlng);
-          else userMarker = L.marker(e.latlng).addTo(map);
-          defaultCenter = [e.latitude, e.longitude];
+                if (userMarker) userMarker.setLatLng(e.latlng);
+                else userMarker = L.marker(e.latlng).addTo(map);
+                defaultCenter = [e.latitude, e.longitude];
               });
             }
           });
@@ -280,17 +281,17 @@
       <div>
         <h4 class="text-lg font-semibold mb-2">Navigate</h4>
         <ul class="space-y-1">
-          <li>Home</li>
-          <li>Subscription</li>
-          <li>Services</li>
-          <li>Support</li>
+          <li><a href="index.html" class="hover:text-green-600">Home</a></li>
+          <li><a href="subscription.html" class="hover:text-green-600">Subscription</a></li>
+          <li><a href="services.html" class="hover:text-green-600">Services</a></li>
+          <li><a href="customerSupport.html" class="hover:text-green-600">Support</a></li>
         </ul>
       </div>
       <div>
         <h4 class="text-lg font-semibold mb-2">Legal</h4>
         <ul class="space-y-1">
-          <li>Terms & Conditions</li>
-          <li>Privacy Policy</li>
+          <li><a href="src/termsNcondition.html" class="hover:text-green-600">Terms & Conditions</a></li>
+          <li><a href="src/privacy.html" class="hover:text-green-600">Privacy Policy</a></li>
         </ul>
       </div>
       <div>
