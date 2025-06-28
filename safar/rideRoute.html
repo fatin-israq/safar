@@ -198,7 +198,7 @@
           <img src="./img/Vehicles/car.png" alt="Car" class="h-10 mx-auto mb-4">
           <h4 class="text-lg font-semibold text-gray-900 mb-2">Car</h4>
           <p class="text-sm text-gray-600">Comfortable & Safe</p>
-          <p class="text-xs text-green-600 font-medium mt-2">৳25-40 per km</p>
+          <p class="text-xs text-green-600 font-medium mt-2">৳50-100 per km</p>
         </div>
         <div
           class="vehicle-option cursor-pointer p-6 border-2 border-gray-200 rounded-xl text-center hover:border-green-600 transition-all duration-300"
@@ -206,7 +206,7 @@
           <img src="./img/Vehicles/CNG.png" alt="CNG" class="h-10 mx-auto mb-4">
           <h4 class="text-lg font-semibold text-gray-900 mb-2">CNG</h4>
           <p class="text-sm text-gray-600">Eco-friendly</p>
-          <p class="text-xs text-green-600 font-medium mt-2">৳20-30 per km</p>
+          <p class="text-xs text-green-600 font-medium mt-2">৳30-45 per km</p>
         </div>
       </div>
     </div>
@@ -220,7 +220,7 @@
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
           </svg>
-          <span>Confirm & Find Rides</span>
+          <span>Confirm with Payment</span>
         </span>
       </button>
     </div>
@@ -244,6 +244,8 @@
     let points = [];
     let selectedVehicle = null;
     let routingControl = null;
+    let routeDistance = 0;
+    let estimatedFare = 0;
 
     // Function to get address from coordinates
     function getAddressFromCoords(lat, lng, callback) {
@@ -286,6 +288,51 @@
         });
     }
 
+    // Function to calculate fare based on distance and vehicle type
+    function calculateFare(distance, vehicleType) {
+      let ratePerKm;
+
+      switch (vehicleType) {
+        case 'Bike':
+          ratePerKm = 20; // Average of 15-25
+          break;
+        case 'Car':
+          ratePerKm = 32; // Average of 25-40
+          break;
+        case 'CNG':
+          ratePerKm = 25; // Average of 20-30
+          break;
+        default:
+          ratePerKm = 25;
+      }
+
+      // Base fare + distance fare
+      const baseFare = 30;
+      const distanceFare = distance * ratePerKm;
+      return Math.round(baseFare + distanceFare);
+    }
+
+    // Function to update fare display
+    function updateFareDisplay() {
+      if (routeDistance > 0 && selectedVehicle) {
+        estimatedFare = calculateFare(routeDistance, selectedVehicle);
+
+        // Update the vehicle option cards with fare
+        document.querySelectorAll('.vehicle-option').forEach(option => {
+          const vehicleType = option.dataset.type;
+          const fareElement = option.querySelector('.fare-amount');
+          const fare = calculateFare(routeDistance, vehicleType);
+
+          if (fareElement) {
+            fareElement.textContent = `৳${fare}`;
+          } else {
+            const priceElement = option.querySelector('.text-xs.text-green-600');
+            priceElement.innerHTML = `<span class="fare-amount">৳${fare}</span> <span class="text-gray-400">(${routeDistance.toFixed(1)} km)</span>`;
+          }
+        });
+      }
+    }
+
     // Function to update or create route
     function updateRoute() {
       if (points[0] && points[1]) {
@@ -318,6 +365,18 @@
           collapsible: true
         }).addTo(map);
 
+        // Listen for route found event to get distance
+        routingControl.on('routesfound', function (e) {
+          const routes = e.routes;
+          if (routes && routes.length > 0) {
+            const route = routes[0];
+            routeDistance = route.summary.totalDistance / 1000; // Convert to km
+            console.log('Route distance:', routeDistance, 'km');
+            updateFareDisplay();
+            checkConfirmButton();
+          }
+        });
+
         // Hide the routing instructions panel
         const routingContainer = routingControl.getContainer();
         if (routingContainer) {
@@ -338,6 +397,75 @@
         // Remove route if we don't have both points
         map.removeControl(routingControl);
         routingControl = null;
+      }
+    }
+
+    // Function to calculate and update fare display
+    function updateFareDisplay() {
+      if (routeDistance > 0) {
+        // Update vehicle option cards with calculated fare
+        const vehicleOptions = document.querySelectorAll('.vehicle-option');
+
+        vehicleOptions.forEach(option => {
+          const vehicleType = option.dataset.type;
+          let baseFare = 0;
+          let perKmRate = 0;
+
+          // Set rates based on vehicle type
+          switch (vehicleType) {
+            case 'Bike':
+              baseFare = 30;
+              perKmRate = 20;
+              break;
+            case 'Car':
+              baseFare = 90;
+              perKmRate = 60;
+              break;
+            case 'CNG':
+              baseFare = 50;
+              perKmRate = 30;
+              break;
+          }
+
+          const totalFare = baseFare + (routeDistance * perKmRate);
+
+          // Update the fare display in the vehicle card
+          const fareElement = option.querySelector('.text-xs.text-green-600');
+          if (fareElement) {
+            fareElement.innerHTML = `<span class="font-bold">৳${Math.round(totalFare)}</span> • ${routeDistance.toFixed(1)} km`;
+          }
+
+          // Update estimated fare for selected vehicle
+          if (option.classList.contains('selected')) {
+            estimatedFare = Math.round(totalFare);
+          }
+        });
+
+        // Update the selected vehicle fare if one is selected
+        if (selectedVehicle) {
+          const selectedOption = document.querySelector(`[data-type="${selectedVehicle}"]`);
+          if (selectedOption) {
+            let baseFare = 0;
+            let perKmRate = 0;
+
+            switch (selectedVehicle) {
+              case 'Bike':
+                baseFare = 30;
+                perKmRate = 20;
+                break;
+              case 'Car':
+                baseFare = 50;
+                perKmRate = 32;
+                break;
+              case 'CNG':
+                baseFare = 40;
+                perKmRate = 25;
+                break;
+            }
+
+            estimatedFare = Math.round(baseFare + (routeDistance * perKmRate));
+          }
+        }
       }
     }
 
@@ -854,36 +982,36 @@
         document.querySelectorAll(".vehicle-option").forEach((el) => el.classList.remove("selected"));
         option.classList.add("selected");
         selectedVehicle = option.dataset.type;
+        updateFareDisplay(); // Recalculate fare for selected vehicle
         checkConfirmButton();
       });
     });
 
     document.getElementById("confirmBtn").onclick = function () {
-      if (points.length === 2 && selectedVehicle) {
-        alert(
-          `Pickup: ${points[0].lat.toFixed(5)}, ${points[0].lng.toFixed(5)}\n` +
-          `Destination: ${points[1].lat.toFixed(5)}, ${points[1].lng.toFixed(5)}\n` +
-          `Vehicle Type: ${selectedVehicle}\n\n` +
-          `Redirecting to find available drivers...`
-        );
+      if (points.length === 2 && selectedVehicle && routeDistance > 0) {
+        // Store ride data for payment page
+        const rideData = {
+          pickup: {
+            lat: points[0].lat,
+            lng: points[0].lng,
+            address: document.getElementById("startCoords").textContent
+          },
+          destination: {
+            lat: points[1].lat,
+            lng: points[1].lng,
+            address: document.getElementById("destCoords").textContent
+          },
+          vehicle: selectedVehicle,
+          distance: routeDistance.toFixed(1),
+          fare: estimatedFare,
+          timestamp: Date.now()
+        };
 
-        // Redirect to dashboard or ride matching page
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 2000);
+        // Save to localStorage
+        localStorage.setItem('safar_payment_data', JSON.stringify(rideData));
 
-        // Example fetch for future implementation:
-        /*
-        fetch("/api/ride", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            start: points[0],
-            destination: points[1],
-            vehicle: selectedVehicle
-          })
-        });
-        */
+        // Redirect to payment page
+        window.location.href = 'payment.html';
       } else {
         alert("Please select both pickup and destination points, and choose a vehicle.");
       }
