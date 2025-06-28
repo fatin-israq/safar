@@ -10,6 +10,87 @@
     body {
       font-family: 'Inter', sans-serif;
     }
+
+    /* Subtle animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Simple loading animation */
+    @keyframes loading {
+
+      0%,
+      20% {
+        color: rgba(255, 255, 255, 0);
+        text-shadow: 0.25em 0 0 rgba(255, 255, 255, 0),
+          0.5em 0 0 rgba(255, 255, 255, 0);
+      }
+
+      40% {
+        color: white;
+        text-shadow: 0.25em 0 0 rgba(255, 255, 255, 0),
+          0.5em 0 0 rgba(255, 255, 255, 0);
+      }
+
+      60% {
+        text-shadow: 0.25em 0 0 white,
+          0.5em 0 0 rgba(255, 255, 255, 0);
+      }
+
+      80%,
+      100% {
+        text-shadow: 0.25em 0 0 white,
+          0.5em 0 0 white;
+      }
+    }
+
+    /* Loading dots animation */
+    .loading-dots {
+      display: inline-block;
+    }
+
+    .loading-dots::after {
+      content: '...';
+      animation: loading 1.5s infinite;
+    }
+
+    /* Smooth transitions for interactions */
+    .transition-colors {
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .transition-shadow {
+      transition: box-shadow 0.3s ease;
+    }
+
+    .transition-transform {
+      transition: transform 0.2s ease;
+    }
+
+    /* FAQ answer expand animation */
+    .faq-answer {
+      transition: all 0.3s ease;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .faq-answer:not(.hidden) {
+      max-height: 200px;
+      animation: fadeInUp 0.3s ease-out;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 
@@ -84,55 +165,61 @@
   <div class="flex flex-1">
     <!-- Main Content -->
     <main class="flex-1 max-w-6xl mx-auto p-6 mt-6 space-y-10">
-      <!-- Title -->
+      <!-- Title Section -->
       <div class="text-center">
-        <h2 class="text-3xl font-bold">Customer Support</h2>
-        <p class="text-sm text-[#1f3b08] mt-2">Need help? We’re here for you 24/7.</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#012B09] mb-3">
+          Customer Support
+        </h2>
+        <p class="text-lg text-[#1f3b08] font-medium">
+          Need help? We're here for you 24/7.
+        </p>
       </div>
 
       <!-- Support Options -->
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid md:grid-cols-2 gap-8">
         <!-- Contact Form -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <h3 class="text-xl font-semibold mb-4">Send us a message</h3>
+        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 bg-[#a5cd99] rounded-lg flex items-center justify-center text-white text-xl mr-3">
+              ✉️
+            </div>
+            <h3 class="text-xl font-semibold text-[#012B09]">Send us a message</h3>
+          </div>
+          <p class="text-gray-600 mb-6">Fill out the form below and we'll get back to you as soon as possible.</p>
+
           <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
             <!-- REQUIRED: Your Access key -->
             <input type="hidden" name="access_key" value="616554e0-95a4-47cc-85b8-9d8690db9ca9">
-
-            <!-- Optional: Subject -->
             <input type="hidden" name="subject" value="New Customer Support Request from Safar">
-
-            <!-- Optional: From Name -->
             <input type="hidden" name="from_name" value="Safar Customer Support">
-
-            <!-- Optional: Custom Redirection -->
             <input type="hidden" name="redirect" value="https://web3forms.com/success">
-
-            <!-- SPAM Protection -->
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
             <div>
-              <label class="block text-sm mb-1">Full Name *</label>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
               <input type="text" name="name" required
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
-                placeholder="Your name">
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a5cd99] focus:border-[#a5cd99] transition-colors"
+                placeholder="Your full name">
             </div>
+
             <div>
-              <label class="block text-sm mb-1">Email Address *</label>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
               <input type="email" name="email" required
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a5cd99] focus:border-[#a5cd99] transition-colors"
                 placeholder="you@example.com">
             </div>
+
             <div>
-              <label class="block text-sm mb-1">Phone Number</label>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
               <input type="tel" name="phone"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a5cd99] focus:border-[#a5cd99] transition-colors"
                 placeholder="+880 1234 567890">
             </div>
+
             <div>
-              <label class="block text-sm mb-1">Issue Category</label>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Issue Category</label>
               <select name="category"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]">
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a5cd99] focus:border-[#a5cd99] transition-colors">
                 <option value="">Select an issue type</option>
                 <option value="ride-issue">Ride Issue</option>
                 <option value="payment-problem">Payment Problem</option>
@@ -142,20 +229,21 @@
                 <option value="other">Other</option>
               </select>
             </div>
+
             <div>
-              <label class="block text-sm mb-1">Message *</label>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
               <textarea name="message" required
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]" rows="4"
-                placeholder="Please describe your issue in detail..."></textarea>
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a5cd99] focus:border-[#a5cd99] transition-colors"
+                rows="4" placeholder="Please describe your issue in detail..."></textarea>
             </div>
 
             <!-- hCaptcha for spam protection -->
             <div class="h-captcha" data-captcha="true"></div>
 
             <button type="submit"
-              class="bg-[#012B09] text-white px-5 py-2 rounded-md hover:bg-[#203924] transition disabled:opacity-50">
+              class="w-full bg-[#012B09] text-white px-6 py-3 rounded-lg hover:bg-[#203924] transition-colors duration-200 font-semibold disabled:opacity-50">
               <span class="submit-text">Send Message</span>
-              <span class="loading-text hidden">Sending...</span>
+              <span class="loading-text hidden">Sending<span class="loading-dots"></span></span>
             </button>
           </form>
         </div>
@@ -163,49 +251,149 @@
         <!-- Live Chat & FAQ -->
         <div class="space-y-6">
           <!-- Live Chat -->
-          <div class="bg-white rounded-xl shadow-lg p-6">
-            <h3 class="text-xl font-semibold mb-4">Live Chat</h3>
-            <div class="bg-[#f0f0f0] p-4 rounded-md text-sm">
-              <p class="text-gray-600">Hi there! Our support agents are currently offline. Try again soon.</p>
-              <button class="mt-3 bg-[#a5cd99] text-[#012B09] px-4 py-2 rounded hover:bg-[#94BB86] transition"
-                onclick="">Start
-                Chat</button>
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-[#94BB86] rounded-lg flex items-center justify-center text-white text-xl mr-3">
+                💬
+              </div>
+              <h3 class="text-xl font-semibold text-[#012B09]">Live Chat</h3>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg border">
+              <div class="flex items-center mb-4">
+                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+                  🤖
+                </div>
+                <div>
+                  <p class="font-medium text-gray-800">Support Bot</p>
+                  <p class="text-xs text-gray-500">Usually responds instantly</p>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">Hi there! Our support agents are currently offline. Try again soon or use
+                the contact form for immediate assistance.</p>
+              <button
+                class="bg-[#a5cd99] text-white px-6 py-3 rounded-lg hover:bg-[#94BB86] transition-colors duration-200 font-semibold"
+                onclick="alert('Chat feature coming soon!')">
+                Start Chat
+              </button>
             </div>
           </div>
 
           <!-- FAQ Accordion -->
-          <div class="bg-white rounded-xl shadow-lg p-6">
-            <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions</h3>
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 bg-[#a5cd99] rounded-lg flex items-center justify-center text-white text-xl mr-3">
+                ❓
+              </div>
+              <h3 class="text-xl font-semibold text-[#012B09]">Frequently Asked Questions</h3>
+            </div>
             <div class="space-y-3">
-              <div class="border rounded-md">
-                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
-                  How do I cancel a ride?
-                  <span class="text-xl">+</span>
+              <div class="border rounded-lg overflow-hidden hover:border-[#a5cd99] transition-colors duration-200">
+                <button
+                  class="w-full flex justify-between items-center px-6 py-4 text-left font-medium toggle-faq hover:bg-gray-50">
+                  <span class="flex items-center">
+                    <span class="mr-3">🚗</span>
+                    How do I cancel a ride?
+                  </span>
+                  <span class="text-xl text-[#a5cd99] transition-transform duration-200">+</span>
                 </button>
-                <div class="px-4 pb-3 hidden">
-                  You can cancel a ride from your ride history. Just click on the ride and select “Cancel Ride”.
+                <div class="faq-answer px-6 pb-4 text-gray-600 hidden">
+                  You can cancel a ride from your ride history. Just click on the ride and select "Cancel Ride". Please
+                  note that cancellation fees may apply depending on the timing.
                 </div>
               </div>
-              <div class="border rounded-md">
-                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
-                  Where can I find my ride receipts?
-                  <span class="text-xl">+</span>
+
+              <div class="border rounded-lg overflow-hidden hover:border-[#a5cd99] transition-colors duration-200">
+                <button
+                  class="w-full flex justify-between items-center px-6 py-4 text-left font-medium toggle-faq hover:bg-gray-50">
+                  <span class="flex items-center">
+                    <span class="mr-3">📧</span>
+                    Where can I find my ride receipts?
+                  </span>
+                  <span class="text-xl text-[#a5cd99] transition-transform duration-200">+</span>
                 </button>
-                <div class="px-4 pb-3 hidden">
-                  Receipts are available in your profile section under "Payment History".
+                <div class="faq-answer px-6 pb-4 text-gray-600 hidden">
+                  Receipts are available in your profile section under "Payment History". You can also request receipts
+                  to be emailed to you automatically after each ride.
                 </div>
               </div>
-              <div class="border rounded-md">
-                <button class="w-full flex justify-between items-center px-4 py-2 text-left font-medium toggle-faq">
-                  I had an issue with my driver. What can I do?
-                  <span class="text-xl">+</span>
+
+              <div class="border rounded-lg overflow-hidden hover:border-[#a5cd99] transition-colors duration-200">
+                <button
+                  class="w-full flex justify-between items-center px-6 py-4 text-left font-medium toggle-faq hover:bg-gray-50">
+                  <span class="flex items-center">
+                    <span class="mr-3">⚠️</span>
+                    I had an issue with my driver. What can I do?
+                  </span>
+                  <span class="text-xl text-[#a5cd99] transition-transform duration-200">+</span>
                 </button>
-                <div class="px-4 pb-3 hidden">
-                  Please report any driver issues using the form or live chat. Our team will investigate.
+                <div class="faq-answer px-6 pb-4 text-gray-600 hidden">
+                  Please report any driver issues using the form above or live chat. Our team will investigate promptly
+                  and take appropriate action to ensure your safety and satisfaction.
+                </div>
+              </div>
+
+              <div class="border rounded-lg overflow-hidden hover:border-[#a5cd99] transition-colors duration-200">
+                <button
+                  class="w-full flex justify-between items-center px-6 py-4 text-left font-medium toggle-faq hover:bg-gray-50">
+                  <span class="flex items-center">
+                    <span class="mr-3">💳</span>
+                    How do I update my payment method?
+                  </span>
+                  <span class="text-xl text-[#a5cd99] transition-transform duration-200">+</span>
+                </button>
+                <div class="faq-answer px-6 pb-4 text-gray-600 hidden">
+                  Go to Settings > Payment Methods in your app or dashboard. You can add, remove, or set a default
+                  payment method there. All transactions are secure and encrypted.
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Additional Support Options -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <div
+          class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300">
+          <div
+            class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+            📞
+          </div>
+          <h4 class="font-semibold text-lg mb-2">Emergency Hotline</h4>
+          <p class="text-gray-600 text-sm mb-4">24/7 emergency support for urgent matters</p>
+          <a href="tel:+8801234567890"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm inline-block">
+            Call Now
+          </a>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300">
+          <div
+            class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+            📱
+          </div>
+          <h4 class="font-semibold text-lg mb-2">WhatsApp Support</h4>
+          <p class="text-gray-600 text-sm mb-4">Quick support via WhatsApp messaging</p>
+          <a href="https://wa.me/8801234567890"
+            class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-200 text-sm inline-block">
+            Message Us
+          </a>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300">
+          <div
+            class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+            📍
+          </div>
+          <h4 class="font-semibold text-lg mb-2">Visit Our Office</h4>
+          <p class="text-gray-600 text-sm mb-4">Walk-in support at our main office</p>
+          <button
+            class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors duration-200 text-sm"
+            onclick="alert('Office: 123 Main St, Dhaka, Bangladesh\nHours: 9 AM - 6 PM')">
+            Get Directions
+          </button>
         </div>
       </div>
     </main>
@@ -262,13 +450,26 @@
     document.querySelectorAll(".toggle-faq").forEach(btn => {
       btn.addEventListener("click", () => {
         const answer = btn.nextElementSibling;
-        const icon = btn.querySelector("span");
+        const icon = btn.querySelector("span:last-child");
+
+        // Close all other FAQ items
+        document.querySelectorAll(".faq-answer").forEach(otherAnswer => {
+          if (otherAnswer !== answer && !otherAnswer.classList.contains("hidden")) {
+            otherAnswer.classList.add("hidden");
+            const otherIcon = otherAnswer.previousElementSibling.querySelector("span:last-child");
+            otherIcon.textContent = "+";
+            otherIcon.style.transform = "rotate(0deg)";
+          }
+        });
+
         if (answer.classList.contains("hidden")) {
           answer.classList.remove("hidden");
           icon.textContent = "–";
+          icon.style.transform = "rotate(180deg)";
         } else {
           answer.classList.add("hidden");
           icon.textContent = "+";
+          icon.style.transform = "rotate(0deg)";
         }
       });
     });
