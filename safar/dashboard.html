@@ -7,7 +7,7 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="src/css/output.css">
   <style>
     body {
       font-family: "Inter", sans-serif;
@@ -192,8 +192,34 @@
         <h3 class="text-lg font-semibold text-black mb-4">Live Tracking</h3>
         <div id="liveMap"></div>
         <button id="recenterBtn" class="recenter-btn">Recenter</button>
-        <img id="mapPlaceholder" src="./Images/mapimg.png" alt="Live Tracking Placeholder" class="w-50 h-50"
-          onclick="showLiveMap()" />
+        <script>
+          // Auto-show live map on page load
+          document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById("liveMap").style.display = "block";
+            document.getElementById("recenterBtn").style.display = "block";
+            
+            if (!map) {
+              map = L.map("liveMap").setView(defaultCenter, defaultZoom);
+              L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: "© OpenStreetMap",
+              }).addTo(map);
+              L.Control.geocoder({ defaultMarkGeocode: false })
+          .on("markgeocode", function (e) {
+            map.setView(e.geocode.center, 16);
+            if (userMarker) userMarker.setLatLng(e.geocode.center);
+            else userMarker = L.marker(e.geocode.center).addTo(map);
+          })
+          .addTo(map);
+              map.locate({ setView: true, maxZoom: 16 });
+              map.on("locationfound", function (e) {
+          if (userMarker) userMarker.setLatLng(e.latlng);
+          else userMarker = L.marker(e.latlng).addTo(map);
+          defaultCenter = [e.latitude, e.longitude];
+              });
+            }
+          });
+        </script>
         <h3 class="text-lg font-semibold text-black my-4">Ride Mode Breakdown</h3>
         <img src="./Images/Photo123.png" alt="Ride Mode Chart" />
         <div class="flex justify-center gap-4 mt-4 text-sm">

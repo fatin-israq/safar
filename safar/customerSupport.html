@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Customer Support</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="src/css/output.css">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -25,9 +25,11 @@
         </a>
       </div>
       <nav class="space-x-6 hidden md:flex justify-between font-medium">
-        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Subscription</a>
-        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Services</a>
-        <a href="#" class="text-sm hover:font-semibold transition-transform hover:scale-105">Support</a>
+        <a href="subscription.html"
+          class="text-sm hover:font-semibold transition-transform hover:scale-105">Subscription</a>
+        <a href="services.html" class="text-sm hover:font-semibold transition-transform hover:scale-105">Services</a>
+        <a href="customerSupport.html"
+          class="text-sm hover:font-semibold transition-transform hover:scale-105">Support</a>
         <a href="./dashboard.html"
           class="text-sm hover:font-semibold transition-transform hover:scale-105">Dashboard</a>
       </nav>
@@ -58,7 +60,7 @@
               </button>
               <!-- Dropdown menu -->
               <div id="profileDropdown"
-                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden border border-gray-200">
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-[9999] hidden border border-gray-200">
                 <a href="./dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
                 <a href="./settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
                 <hr class="my-1">
@@ -136,26 +138,68 @@
         <!-- Contact Form -->
         <div class="bg-white rounded-xl shadow-lg p-6">
           <h3 class="text-xl font-semibold mb-4">Send us a message</h3>
-          <form class="space-y-4">
+          <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+            <!-- REQUIRED: Your Access key -->
+            <input type="hidden" name="access_key" value="616554e0-95a4-47cc-85b8-9d8690db9ca9">
+
+            <!-- Optional: Subject -->
+            <input type="hidden" name="subject" value="New Customer Support Request from Safar">
+
+            <!-- Optional: From Name -->
+            <input type="hidden" name="from_name" value="Safar Customer Support">
+
+            <!-- Optional: Custom Redirection -->
+            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+            <!-- SPAM Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
             <div>
-              <label class="block text-sm mb-1">Full Name</label>
-              <input type="text"
+              <label class="block text-sm mb-1">Full Name *</label>
+              <input type="text" name="name" required
                 class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
                 placeholder="Your name">
             </div>
             <div>
-              <label class="block text-sm mb-1">Email Address</label>
-              <input type="email"
+              <label class="block text-sm mb-1">Email Address *</label>
+              <input type="email" name="email" required
                 class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
                 placeholder="you@example.com">
             </div>
             <div>
-              <label class="block text-sm mb-1">Message</label>
-              <textarea class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
-                rows="4" placeholder="How can we help you?"></textarea>
+              <label class="block text-sm mb-1">Phone Number</label>
+              <input type="tel" name="phone"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]"
+                placeholder="+880 1234 567890">
             </div>
+            <div>
+              <label class="block text-sm mb-1">Issue Category</label>
+              <select name="category"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]">
+                <option value="">Select an issue type</option>
+                <option value="ride-issue">Ride Issue</option>
+                <option value="payment-problem">Payment Problem</option>
+                <option value="driver-complaint">Driver Complaint</option>
+                <option value="app-bug">App Bug</option>
+                <option value="account-help">Account Help</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Message *</label>
+              <textarea name="message" required
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#a5cd99]" rows="4"
+                placeholder="Please describe your issue in detail..."></textarea>
+            </div>
+
+            <!-- hCaptcha for spam protection -->
+            <div class="h-captcha" data-captcha="true"></div>
+
             <button type="submit"
-              class="bg-[#012B09] text-white px-5 py-2 rounded-md hover:bg-[#203924] transition">Send Message</button>
+              class="bg-[#012B09] text-white px-5 py-2 rounded-md hover:bg-[#203924] transition disabled:opacity-50">
+              <span class="submit-text">Send Message</span>
+              <span class="loading-text hidden">Sending...</span>
+            </button>
           </form>
         </div>
 
@@ -224,10 +268,10 @@
       <div>
         <h4 class="text-lg font-semibold mb-2">Navigate</h4>
         <ul class="space-y-1 text-sm">
-          <li>Home</li>
-          <li>Subscription</li>
-          <li>Services</li>
-          <li>Support</li>
+          <li><a href="index.html" class="hover:text-green-600">Home</a></li>
+          <li><a href="subscription.html" class="hover:text-green-600">Subscription</a></li>
+          <li><a href="services.html" class="hover:text-green-600">Services</a></li>
+          <li><a href="customerSupport.html" class="hover:text-green-600">Support</a></li>
         </ul>
       </div>
       <div>
@@ -252,6 +296,9 @@
     <div class="text-center text-xs text-gray-500 mt-8">© 2025 Safar. All rights reserved.</div>
   </footer>
 
+  <!-- Web3Forms Script for hCaptcha and form handling -->
+  <script src="https://web3forms.com/client/script.js" async defer></script>
+
   <!-- FAQ Toggle Script -->
   <script>
     document.querySelectorAll(".toggle-faq").forEach(btn => {
@@ -266,6 +313,55 @@
           icon.textContent = "+";
         }
       });
+    });
+
+    // Form submission handling
+    document.querySelector('form[action*="web3forms"]').addEventListener('submit', function (e) {
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const submitText = submitBtn.querySelector('.submit-text');
+      const loadingText = submitBtn.querySelector('.loading-text');
+
+      // Show loading state
+      submitText.classList.add('hidden');
+      loadingText.classList.remove('hidden');
+      submitBtn.disabled = true;
+
+      // Reset form state if submission fails
+      setTimeout(() => {
+        if (submitBtn.disabled) {
+          submitText.classList.remove('hidden');
+          loadingText.classList.add('hidden');
+          submitBtn.disabled = false;
+        }
+      }, 10000); // Reset after 10 seconds if still disabled
+    });
+
+    // Handle successful form submission (if staying on same page)
+    window.addEventListener('message', function (event) {
+      if (event.data.type === 'web3forms_success') {
+        // Show success message
+        const form = document.querySelector('form[action*="web3forms"]');
+        const successDiv = document.createElement('div');
+        successDiv.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4';
+        successDiv.innerHTML = '✅ Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
+        form.parentNode.insertBefore(successDiv, form);
+
+        // Reset form
+        form.reset();
+
+        // Reset button state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const submitText = submitBtn.querySelector('.submit-text');
+        const loadingText = submitBtn.querySelector('.loading-text');
+        submitText.classList.remove('hidden');
+        loadingText.classList.add('hidden');
+        submitBtn.disabled = false;
+
+        // Remove success message after 5 seconds
+        setTimeout(() => {
+          successDiv.remove();
+        }, 5000);
+      }
     });
   </script>
 
