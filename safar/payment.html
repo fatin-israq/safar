@@ -313,7 +313,7 @@
                         </svg>
                     </div>
                     <h2 class="text-3xl font-bold text-green-600 mb-2">Payment Successful!</h2>
-                    <p class="text-gray-600 mb-6">Your ride has been booked successfully</p>
+                    <p id="successMessage" class="text-gray-600 mb-6">Your booking has been confirmed successfully</p>
 
                     <!-- Booking Details -->
                     <div class="bg-gray-50 rounded-lg p-6 mb-6 text-left">
@@ -336,14 +336,11 @@
                                 <span class="font-semibold text-green-600">Confirmed</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Next Steps -->
-                    <div class="bg-blue-50 rounded-lg p-4 mb-6">
+                    </div> <!-- Next Steps -->
+                    <div id="nextStepsSection" class="bg-blue-50 rounded-lg p-4 mb-6">
                         <h4 class="font-semibold text-blue-900 mb-2">What's Next?</h4>
-                        <p class="text-sm text-blue-700">
-                            We're now finding the best driver for your ride. You'll receive a notification
-                            once a driver accepts your request with their details and estimated arrival time.
+                        <p id="nextStepsText" class="text-sm text-blue-700">
+                            We're now processing your request. You'll receive updates via notification.
                         </p>
                     </div>
                 </div>
@@ -354,9 +351,9 @@
                         class="text-white bg-gradient-to-r from-green-600 to-green-700 px-8 py-3 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transform hover:scale-105 transition-all duration-300 shadow-lg">
                         Go to Dashboard
                     </button>
-                    <button onclick="window.location.href='rideRoute.html'"
+                    <button id="bookAnotherBtn" onclick="window.location.href='index.html'"
                         class="text-green-600 bg-white border-2 border-green-600 px-8 py-3 rounded-xl font-semibold hover:bg-green-50 transform hover:scale-105 transition-all duration-300">
-                        Book Another Ride
+                        Book Another Service
                     </button>
                 </div>
             </div>
@@ -381,25 +378,61 @@
                 try {
                     rideData = JSON.parse(savedData);
 
-                    // Populate ride summary
-                    document.getElementById('pickupAddress').textContent = rideData.pickup.address;
-                    document.getElementById('destinationAddress').textContent = rideData.destination.address;
-                    document.getElementById('vehicleType').textContent = rideData.vehicle;
-                    document.getElementById('rideDistance').textContent = rideData.distance + ' km';
-                    document.getElementById('totalFare').textContent = '৳' + rideData.fare;
+                    // Check if it's a parcel service or ride service
+                    if (rideData.service === 'parcel') {
+                        // Handle parcel data
+                        document.getElementById('pickupAddress').textContent = rideData.pickup.address;
+                        document.getElementById('destinationAddress').textContent = rideData.delivery.address;
+                        document.getElementById('vehicleType').textContent = `${rideData.parcelDetails.size} Parcel (${rideData.parcelDetails.weight})`;
+                        document.getElementById('rideDistance').textContent = rideData.distance + ' km';
+                        document.getElementById('totalFare').textContent = '৳' + rideData.fare;
+
+                        // Update labels for parcel service
+                        document.querySelector('.bg-green-50 .font-semibold').textContent = 'Pickup Location';
+                        document.querySelector('.bg-blue-50 .font-semibold').textContent = 'Delivery Location';
+                        document.querySelector('h2').textContent = 'Parcel Summary';
+
+                        // Show parcel details
+                        const vehicleSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4.gap-4');
+                        vehicleSection.innerHTML = `
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">Service</p>
+                                <p class="font-semibold text-gray-900">Parcel Delivery</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">Size</p>
+                                <p class="font-semibold text-gray-900">${rideData.parcelDetails.size} (${rideData.parcelDetails.weight})</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">Distance</p>
+                                <p class="font-semibold text-gray-900">${rideData.distance} km</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">Total Fare</p>
+                                <p class="font-bold text-xl text-green-600">৳${rideData.fare}</p>
+                            </div>
+                        `;
+                    } else {
+                        // Handle ride data (existing logic)
+                        document.getElementById('pickupAddress').textContent = rideData.pickup.address;
+                        document.getElementById('destinationAddress').textContent = rideData.destination.address;
+                        document.getElementById('vehicleType').textContent = rideData.vehicle;
+                        document.getElementById('rideDistance').textContent = rideData.distance + ' km';
+                        document.getElementById('totalFare').textContent = '৳' + rideData.fare;
+                    }
 
                     // Calculate estimated time (assuming 30 km/h average speed)
                     const estimatedMinutes = Math.round((parseFloat(rideData.distance) / 30) * 60);
                     document.getElementById('estimatedTime').textContent = estimatedMinutes;
 
                 } catch (error) {
-                    console.error('Error loading ride data:', error);
-                    alert('Error loading ride data. Redirecting to route selection...');
-                    window.location.href = 'rideRoute.html';
+                    console.error('Error loading service data:', error);
+                    alert('Error loading service data. Redirecting to home...');
+                    window.location.href = 'index.html';
                 }
             } else {
-                alert('No ride data found. Please select your route first.');
-                window.location.href = 'rideRoute.html';
+                alert('No service data found. Please select your service first.');
+                window.location.href = 'index.html';
             }
         }
 
@@ -484,9 +517,21 @@
                             document.getElementById('amountPaid').textContent = '৳' + rideData.fare;
 
                             // Generate booking ID
-                            const bookingId = 'SAF-' + new Date().getFullYear() + '-' +
+                            const servicePrefix = rideData.service === 'parcel' ? 'PAR' : 'SAF';
+                            const bookingId = servicePrefix + '-' + new Date().getFullYear() + '-' +
                                 String(Date.now()).slice(-6);
                             document.getElementById('bookingId').textContent = bookingId;
+
+                            // Update success message and next steps based on service type
+                            if (rideData.service === 'parcel') {
+                                document.getElementById('successMessage').textContent = 'Your parcel has been scheduled for delivery!';
+                                document.getElementById('nextStepsText').textContent =
+                                    "We're now assigning a delivery partner for your parcel. You and the receiver will receive notifications with tracking details and estimated delivery time.";
+                            } else {
+                                document.getElementById('successMessage').textContent = 'Your ride has been booked successfully!';
+                                document.getElementById('nextStepsText').textContent =
+                                    "We're now finding the best driver for your ride. You'll receive a notification once a driver accepts your request with their details and estimated arrival time.";
+                            }
 
                             // Clear payment data from localStorage
                             localStorage.removeItem('safar_payment_data');

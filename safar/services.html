@@ -97,71 +97,119 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Ride Booking Service -->
-                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl"
-                        data-aos="zoom-in">
+                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl cursor-pointer"
+                        data-aos="zoom-in" onclick="window.location.href='rideRoute.html'">
                         <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <img src="./img/homepage/car 1.svg" alt="Ride Booking" class="w-12 h-12" />
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Ride Booking</h3>
                         <p class="text-gray-600 mb-4">Book instant rides to your destination with our fleet of verified
                             drivers. Available 24/7 across the city.</p>
-                        <ul class="text-sm text-gray-500 text-left space-y-1">
+                        <ul class="text-sm text-gray-500 text-left space-y-1 mb-4">
                             <li>• Instant booking</li>
                             <li>• GPS tracking</li>
                             <li>• Multiple vehicle types</li>
                             <li>• Cashless payments</li>
                         </ul>
+                        <div class="mt-4">
+                            <span
+                                class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors">
+                                Book a Ride
+                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
 
                     <!-- Parcel Delivery -->
-                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl"
-                        data-aos="zoom-in" data-aos-delay="100">
+                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl cursor-pointer"
+                        data-aos="zoom-in" data-aos-delay="100" onclick="window.location.href='parcelDelivery.html'">
                         <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <img src="./img/homepage/parcel.svg" alt="Parcel Delivery" class="w-12 h-12" />
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Parcel Delivery</h3>
                         <p class="text-gray-600 mb-4">Send packages across the city with our reliable and fast delivery
                             service. Same-day delivery available.</p>
-                        <ul class="text-sm text-gray-500 text-left space-y-1">
+                        <ul class="text-sm text-gray-500 text-left space-y-1 mb-4">
                             <li>• Same-day delivery</li>
                             <li>• Package tracking</li>
                             <li>• Insurance coverage</li>
                             <li>• Secure handling</li>
                         </ul>
+                        <div class="mt-4">
+                            <span
+                                class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                                Send Parcel
+                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
 
                     <!-- Pre-booking -->
-                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl relative opacity-75"
                         data-aos="zoom-in" data-aos-delay="200">
+                        <div
+                            class="absolute top-3 right-3 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            Coming Soon
+                        </div>
                         <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <img src="./img/homepage/book.svg" alt="Pre-booking" class="w-12 h-12" />
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Pre-booking</h3>
                         <p class="text-gray-600 mb-4">Schedule your rides in advance for important meetings, airport
                             transfers, or special occasions.</p>
-                        <ul class="text-sm text-gray-500 text-left space-y-1">
+                        <ul class="text-sm text-gray-500 text-left space-y-1 mb-4">
                             <li>• Schedule up to 7 days ahead</li>
                             <li>• Guaranteed availability</li>
                             <li>• Priority booking</li>
                             <li>• Reminder notifications</li>
                         </ul>
+                        <div class="mt-4">
+                            <span
+                                class="inline-flex items-center px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-lg cursor-not-allowed">
+                                Coming Soon
+                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
 
                     <!-- Pool Rides -->
-                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                    <div class="bg-amber-50 rounded-xl shadow-lg p-6 text-center transform transition duration-500 hover:scale-105 hover:shadow-xl relative opacity-75"
                         data-aos="zoom-in" data-aos-delay="300">
+                        <div
+                            class="absolute top-3 right-3 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            Coming Soon
+                        </div>
                         <div class="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <img src="./img/homepage/pool-ride.svg" alt="Pool Rides" class="w-12 h-12" />
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Pool Rides</h3>
                         <p class="text-gray-600 mb-4">Share rides with other passengers going in the same direction.
                             Eco-friendly and cost-effective.</p>
-                        <ul class="text-sm text-gray-500 text-left space-y-1">
+                        <ul class="text-sm text-gray-500 text-left space-y-1 mb-4">
                             <li>• Reduced fare costs</li>
                             <li>• Eco-friendly travel</li>
                             <li>• Safe co-passengers</li>
                             <li>• Flexible routes</li>
                         </ul>
+                        <div class="mt-4">
+                            <span
+                                class="inline-flex items-center px-4 py-2 bg-gray-400 text-white text-sm font-medium rounded-lg cursor-not-allowed">
+                                Coming Soon
+                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
