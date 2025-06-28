@@ -62,8 +62,6 @@
         <a href="services.html" class="text-sm hover:font-semibold transition-transform hover:scale-105">Services</a>
         <a href="customerSupport.html"
           class="text-sm hover:font-semibold transition-transform hover:scale-105">Support</a>
-        <a href="./dashboard.html"
-          class="text-sm hover:font-semibold transition-transform hover:scale-105">Dashboard</a>
       </nav>
       <div class="space-x-2 font-semibold" id="navbarUser">
         <!-- Default: Login/Register buttons (shown when not logged in) -->
@@ -309,6 +307,64 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script src="./src/js/navbar.js"></script>
+
+  <!-- Authentication Protection Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Check if user is logged in
+      const isLoggedIn = localStorage.getItem('safar_user_logged_in') === 'true';
+
+      if (!isLoggedIn) {
+        // Create authentication popup
+        const popup = document.createElement('div');
+        popup.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[10000]';
+        popup.innerHTML = `
+          <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
+            <div class="text-center">
+              <div class="mb-4">
+                <svg class="mx-auto h-12 w-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Access Restricted</h3>
+              <p class="text-gray-600 mb-6">You need to login or create an account to access the dashboard.</p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a href="src/login.html" class="bg-[#012B09] text-white px-6 py-2 rounded-md hover:bg-[#203924] transition flex-1 text-center">
+                  Login
+                </a>
+                <a href="src/signup.html" class="bg-gray-100 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-200 transition flex-1 text-center">
+                  Sign Up
+                </a>
+              </div>
+              <button onclick="goHome()" class="mt-4 text-sm text-gray-500 hover:text-gray-700 underline">
+                Go back to homepage
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(popup);
+
+        // Disable page interaction
+        document.body.style.overflow = 'hidden';
+
+        // Function to go back to homepage
+        window.goHome = function () {
+          window.location.href = 'index.html';
+        };
+
+        // Prevent ESC key from closing popup
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            e.preventDefault();
+          }
+        });
+
+        return; // Don't load the rest of the dashboard
+      }
+    });
+  </script>
+
   <script>
     let map, userMarker, defaultCenter = [23.8103, 90.4125], defaultZoom = 12;
     document.getElementById("mapPlaceholder").addEventListener("click", function (e) {
