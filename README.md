@@ -2,7 +2,6 @@
 
 > **"Ride Till Death"** - Your ultimate companion for safe, reliable, and convenient transportation in Bangladesh.
 
-
 ## 📋 Table of Contents
 
 - [About](#about)
@@ -21,28 +20,33 @@
 Safar is a modern ride-sharing platform designed specifically for the Bangladeshi market. Our web application connects riders with drivers, offering a seamless transportation experience with features like real-time tracking, cashless payments through Bkash integration, and women-only ride options for enhanced safety.
 
 ### 🌟 Mission
+
 To revolutionize urban transportation in Bangladesh by providing safe, affordable, and reliable ride-sharing services that connect communities and empower both riders and drivers.
 
 ## ✨ Features
 
 ### 🚘 Core Services
+
 - **Book a Ride** - Instant ride booking with multiple vehicle options
 - **Send a Parcel** - Parcel delivery service for quick shipments
 - **Prebook** - Schedule rides in advance
 - **Pool a Ride** - Share rides to reduce costs and environmental impact
 
 ### 🔒 Safety & Security
+
 - **Women-Only Option** - Dedicated women-only rides for enhanced safety
 - **Real-Time Tracking** - Live GPS tracking for all rides
 - **Safe Rides** - Verified drivers and secure ride experiences
 - **Instant Notifications** - Real-time updates and communication
 
 ### 💳 Payment & Convenience
+
 - **Bkash Integration** - Seamless mobile payments
 - **Cashless Transactions** - Multiple digital payment options
 - **Transparent Pricing** - Clear fare structure with no hidden costs
 
 ### 📱 User Experience
+
 - **Responsive Design** - Works perfectly on all devices
 - **Modern UI/UX** - Clean, intuitive interface with smooth animations
 - **Multi-language Support** - Designed for Bengali and English speakers
@@ -50,6 +54,7 @@ To revolutionize urban transportation in Bangladesh by providing safe, affordabl
 ## 🛠️ Technologies Used
 
 ### Frontend
+
 - **HTML5** - Semantic markup structure
 - **CSS3** - Modern styling with custom animations
 - **Tailwind CSS** - Utility-first CSS framework
@@ -57,18 +62,20 @@ To revolutionize urban transportation in Bangladesh by providing safe, affordabl
 - **AOS (Animate On Scroll)** - Smooth scroll animations
 
 ### Design & Animation
+
 - **Custom CSS Animations** - Smooth transitions and hover effects
 - **Google Fonts (Poppins)** - Modern typography
 - **Responsive Design** - Mobile-first approach
 
 ### Tools & Libraries
-- **QuickChart.io** - Chart generation for dashboard
-- **Font Awesome** - Icon library 
 
+- **QuickChart.io** - Chart generation for dashboard
+- **Font Awesome** - Icon library
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Web browser (Chrome, Firefox, Safari, Edge)
 - Text editor (VS Code, Sublime Text, etc.)
 - Node.js (for Tailwind CSS compilation)
@@ -76,73 +83,107 @@ To revolutionize urban transportation in Bangladesh by providing safe, affordabl
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/fatin-israq/safar.git
    cd safar
    ```
 
 2. **Install Tailwind CSS (if making changes)**
+
    ```bash
    npm install -D tailwindcss
    npx tailwindcss init
    ```
 
 3. **Compile Tailwind CSS**
+
    ```bash
    npx tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch
    ```
 
 4. **Open the application**
+
    ```bash
    # Simply open index.html in your browser or use a local server
+
+   ```
 
 5. **Visit the application**
    Open your browser and navigate to `http://127.0.0.1:5500/`
 
 ## 📄 Pages Overview
 
-| Page | Description | Key Features |
-|------|-------------|--------------|
-| **Homepage** (`index.html`) | Landing page with hero section | Service cards, animations, testimonials |
-| **Dashboard** (`dashboard.html`) | Admin/Driver control panel | Statistics, charts, ride management |
-| **Login** (`src/login.html`) | User authentication | Animated form, responsive design |
-| **Sign Up** (`src/signup.html`) | User registration | Multi-step form, validation |
-| **Terms & Conditions** (`src/termsNcondition.html`) | Legal terms | Comprehensive legal framework |
-| **Privacy Policy** (`src/privacy.html`) | Data protection policy | GDPR-compliant privacy information |
+| Page                                                | Description                    | Key Features                            |
+| --------------------------------------------------- | ------------------------------ | --------------------------------------- |
+| **Homepage** (`index.html`)                         | Landing page with hero section | Service cards, animations, testimonials |
+| **Dashboard** (`dashboard.html`)                    | Admin/Driver control panel     | Statistics, charts, ride management     |
+| **Login** (`src/login.html`)                        | User authentication            | Animated form, responsive design        |
+| **Sign Up** (`src/signup.html`)                     | User registration              | Multi-step form, validation             |
+| **Terms & Conditions** (`src/termsNcondition.html`) | Legal terms                    | Comprehensive legal framework           |
+| **Privacy Policy** (`src/privacy.html`)             | Data protection policy         | GDPR-compliant privacy information      |
 
 ## 📱 Screenshots
-Will be added later
 
-### Homepage
-- Modern hero section with ride booking interface
-- Service cards with hover animations
-- "How Safar Works" section with step-by-step guide
-- Customer testimonials and feature highlights
+### 🏠 Homepage
 
-### Dashboard
-- Real-time statistics and metrics
-- Interactive charts and graphs
-- Ride management interface
-- Payment tracking system
+_Modern landing page with intuitive ride booking interface_
 
-### Authentication
-- Clean login/signup forms
-- Smooth animations and transitions
-- Social media integration ready
-- Terms and privacy policy links
+![Homepage](./screenshots/homepage.png)
+
+- **Hero Section**: Eye-catching banner with instant ride booking
+- **Service Cards**: Interactive cards for ride booking, parcel delivery, and more
+- **How Safar Works**: Step-by-step guide with beautiful icons
+- **Responsive Design**: Perfect adaptation across all device sizes
+
+### 📊 Dashboard
+
+_Comprehensive admin and driver control panel_
+
+![Dashboard](./screenshots/dashboard.png)
+
+- **Real-time Statistics**: Live metrics and performance indicators
+- **Interactive Charts**: Visual data representation with analytics
+- **Ride Management**: Complete ride tracking and management system
+- **Modern UI**: Clean design with intuitive navigation
+
+### 🔐 Authentication
+
+_Secure and elegant user login system_
+
+![Login Page](./screenshots/login.png)
+
+- **Clean Form Design**: Minimalist login interface
+- **Input Validation**: Real-time form validation
+- **Responsive Layout**: Mobile-optimized authentication
+- **Modern Styling**: Professional and user-friendly design
+
+### 📞 Customer Support
+
+_Dedicated support system with modern design_
+
+![Customer Support](./screenshots/customer-support.png)
+
+- **Multi-channel Support**: Phone, email, and chat options
+- **FAQ Section**: Comprehensive help resources
+- **Contact Forms**: Easy-to-use support request forms
+- **Professional Layout**: Clean and organized interface
 
 ## 🎨 Design Features
 
 ### Color Scheme
+
 - **Primary Green**: `#012B09`, `#75BF7A` - Trust and nature
 - **Accent Amber**: `#FCD34D`, `#F59E0B` - Energy and warmth
 - **Neutral Grays**: Various shades for text and backgrounds
 
 ### Typography
+
 - **Primary Font**: Poppins - Modern, clean, and highly readable
 - **Font Weights**: 100-900 for flexible design hierarchy
 
 ### Animations
+
 - **Page Load**: Fade-in and slide-up animations
 - **Hover Effects**: Scale transforms and color transitions
 - **Scroll Animations**: AOS library for smooth reveals
@@ -159,15 +200,16 @@ We welcome contributions to improve Safar! Here's how you can help:
 5. **Open a Pull Request**
 
 ### Contribution Guidelines
+
 - Follow existing code style and structure
 - Test your changes across different browsers
 - Update documentation as needed
 - Ensure responsive design principles
 
-
 ## 📞 Contact
 
 **Safar Developer Team**
+
 - **Email**: israqq2120@gmail.com
 - **Address**: Bhatara, Dhaka, Bangladesh
 
