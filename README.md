@@ -129,40 +129,28 @@ To revolutionize urban transportation in Bangladesh by providing safe, affordabl
 
 _Modern landing page with intuitive ride booking interface_
 
-![Homepage](./screenshots/homepage.png)
+![Homepage](./screenshots/Safar-home-page.jpeg)
 
 - **Hero Section**: Eye-catching banner with instant ride booking
 - **Service Cards**: Interactive cards for ride booking, parcel delivery, and more
 - **How Safar Works**: Step-by-step guide with beautiful icons
 - **Responsive Design**: Perfect adaptation across all device sizes
 
-### 📊 Dashboard
+### 📊 Selecting Route
 
-_Comprehensive admin and driver control panel_
+![Dashboard](./screenshots/Select%20Route%20_%20Safar.jpeg)
 
-![Dashboard](./screenshots/dashboard.png)
+### 🔐 Payment
 
-- **Real-time Statistics**: Live metrics and performance indicators
-- **Interactive Charts**: Visual data representation with analytics
-- **Ride Management**: Complete ride tracking and management system
-- **Modern UI**: Clean design with intuitive navigation
+_Secure and elegant payment system_
 
-### 🔐 Authentication
-
-_Secure and elegant user login system_
-
-![Login Page](./screenshots/login.png)
-
-- **Clean Form Design**: Minimalist login interface
-- **Input Validation**: Real-time form validation
-- **Responsive Layout**: Mobile-optimized authentication
-- **Modern Styling**: Professional and user-friendly design
+![Login Page](./screenshots/Payment%20_%20Safar.jpeg)
 
 ### 📞 Customer Support
 
 _Dedicated support system with modern design_
 
-![Customer Support](./screenshots/customer-support.png)
+![Customer Support](./screenshots/Customer%20Support.jpeg)
 
 - **Multi-channel Support**: Phone, email, and chat options
 - **FAQ Section**: Comprehensive help resources
